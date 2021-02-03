@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   login(login: string, password: string): Observable<any> {
     return this.http
-      .post(`${environment.url}/users`, 
+      .post('/api/users/login', 
         {
           login, 
           password
