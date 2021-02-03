@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from './authentication/guards/authentication.guard';
-import { HomeComponent } from './components/home/home.component';
+import { AuthenticatedUserAppComponent } from './components/authenticated-user-app/authenticated-user-app.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -20,19 +22,22 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: AuthenticatedUserAppComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    AuthenticatedUserAppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
