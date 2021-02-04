@@ -34,7 +34,7 @@ export class AuthenticationService {
 
   signup(userCreationData): Observable<any> {
     return this.http
-      .post('/api/users',
+      .post(`${environment.url}/users`,
         userCreationData
       )
       .pipe(
@@ -46,7 +46,7 @@ export class AuthenticationService {
 
   logout(): Observable<any> {
     return this.http
-      .post('/api/users/logout', {})
+      .post(`${environment.url}/users/logout`, {})
       .pipe(
         catchError(this.handleError),
         tap(() => this.performLogout()),
@@ -56,7 +56,7 @@ export class AuthenticationService {
 
   logoutAll(): Observable<any> {
     return this.http
-      .post('/api/users/logoutAll', {})
+      .post(`${environment.url}/users/logoutAll`, {})
       .pipe(
         catchError(this.handleError),
         tap(() => this.performLogoutAll()),
@@ -64,18 +64,28 @@ export class AuthenticationService {
       );
   }
 
-  getLogedUser(): UserData {
-    return this.user;
+  isUserLoged(): boolean {
+    return !!this.getAuthenticationToken();
+  }
+  
+  getAuthenticationToken(): Token {
+    const value = localStorage.getItem(this.tokenFieldName);
+    
+    return value ? {token: value} : undefined;
   }
 
   private performLogin(resultData) {
-    this.user = resultData.user;
-    this.storeAuthenticationToken(resultData.token);
-    this.router.navigate(['/home']);
+    this.handleAuthentication(resultData);
   }
 
   private performSignup(resultData) {
+    this.handleAuthentication(resultData);
+  }
 
+  private handleAuthentication(resultData) {
+    this.user = resultData.user;
+    this.storeAuthenticationToken(resultData.token);
+    this.router.navigate(['/home']);
   }
 
   private performLogout() {
@@ -84,7 +94,7 @@ export class AuthenticationService {
   }
 
   private performLogoutAll() {
-
+    this.performLogout();
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
@@ -93,12 +103,6 @@ export class AuthenticationService {
 
   private storeAuthenticationToken(token: Token) {
     localStorage.setItem(this.tokenFieldName, token.token);
-  }
-
-  private getAuthenticationToken(): Token {
-    const value = localStorage.getItem(this.tokenFieldName);
-    
-    return {token: value};
   }
 
   private removeAuthenticationToken() {

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Injectable({
@@ -11,7 +10,7 @@ export class NotAuthenticatedUserGuard implements CanActivate {
   }
   
   canActivate() {
-    const userIsLoged = !!this.authenticationService.getLogedUser();
+    const userIsLoged = this.authenticationService.isUserLoged();
 
     if (userIsLoged) {
       return this.router.createUrlTree(['/home']);

@@ -12,7 +12,7 @@ export class AuthenticationGuard implements CanActivate {
   }
   
   canActivate() {
-    const userIsLoged = !!this.authenticationService.getLogedUser();
+    const userIsLoged = this.authenticationService.isUserLoged();
 
     if (!userIsLoged) {
       return this.router.createUrlTree(['/login']);
