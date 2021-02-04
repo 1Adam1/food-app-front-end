@@ -9,20 +9,27 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from './authentication/guards/authentication.guard';
 import { AuthenticatedUserAppComponent } from './components/authenticated-user-app/authenticated-user-app.component';
 import { FormsModule } from '@angular/forms';
+import { NotAuthenticatedUserGuard } from './authentication/guards/not-authenticated-user.guard';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/login'
+    redirectTo: '/home'
   },
   {
     path: 'login',
-    component: AuthenticationComponent
+    component: AuthenticationComponent,
+    canActivate: [NotAuthenticatedUserGuard]
   },
   {
     path: 'home',
-    component: AuthenticatedUserAppComponent
+    component: AuthenticatedUserAppComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: '**',
+    redirectTo: '/home'
   }
 ];
 
@@ -39,7 +46,8 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
