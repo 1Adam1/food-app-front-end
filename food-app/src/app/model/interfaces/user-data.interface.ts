@@ -1,5 +1,4 @@
 import { Indexable } from "./indexable.interface";
-import { Token } from "./token";
 
 export interface UserData extends Indexable {
   login: string;
@@ -7,5 +6,4 @@ export interface UserData extends Indexable {
   name: string;
   surname: string;
   description: string;
-  tokens: Token[];
 }

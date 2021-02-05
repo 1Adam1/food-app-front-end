@@ -33,7 +33,7 @@ export class AuthenticationService {
       );
   }
 
-  signup(userCreationData: UserCreateRequestData): Observable<any> {
+  signup(userCreationData: UserCreateRequestData): Observable<boolean> {
     return this.http
       .post(`${environment.url}/users`,
         userCreationData
@@ -45,7 +45,7 @@ export class AuthenticationService {
       );
   }
 
-  logout(): Observable<any> {
+  logout(): Observable<boolean> {
     return this.http
       .post(`${environment.url}/users/logout`, {})
       .pipe(
@@ -55,7 +55,7 @@ export class AuthenticationService {
       );
   }
 
-  logoutAll(): Observable<any> {
+  logoutAll(): Observable<boolean> {
     return this.http
       .post(`${environment.url}/users/logoutAll`, {})
       .pipe(
@@ -67,6 +67,10 @@ export class AuthenticationService {
 
   isUserLoged(): boolean {
     return !!this.getAuthenticationToken();
+  }
+
+  getLogedUser(): UserData {
+    return this.user;
   }
   
   getAuthenticationToken(): Token {
