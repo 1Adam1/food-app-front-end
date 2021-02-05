@@ -8,9 +8,10 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from './authentication/guards/authentication.guard';
 import { AuthenticatedUserAppComponent } from './components/authenticated-user-app/authenticated-user-app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotAuthenticatedUserGuard } from './authentication/guards/not-authenticated-user.guard';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { RegisterComponent } from './authentication/register/register.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [NotAuthenticatedUserGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
     canActivate: [NotAuthenticatedUserGuard]
   },
   {
@@ -38,14 +44,16 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    AuthenticatedUserAppComponent
+    AuthenticatedUserAppComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
