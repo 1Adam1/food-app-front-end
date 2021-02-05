@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { UserCreateRequestData } from '../model/api/requests/user.request-date';
 import { Token } from '../model/interfaces/token';
 import { UserData } from '../model/interfaces/user-data.interface';
 
@@ -32,7 +33,7 @@ export class AuthenticationService {
       );
   }
 
-  signup(userCreationData): Observable<any> {
+  signup(userCreationData: UserCreateRequestData): Observable<any> {
     return this.http
       .post(`${environment.url}/users`,
         userCreationData

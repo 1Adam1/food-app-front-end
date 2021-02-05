@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
+import { UserCreateRequestData } from 'src/app/model/api/requests/user.request-date';
 import { UserData } from 'src/app/model/interfaces/user-data.interface';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { FormValuesToObjectConverterService } from 'src/app/services/form-values-to-object-converter.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private converter: FormValuesToObjectConverterService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -38,11 +40,19 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    if (!this.form.valid) {
+      return;
+    }
+
+    const fields = [
+      'login',
+      'password',
+      'name',
+      'surname',
+      'description'
+    ];
+    const data = this.converter.convert<UserCreateRequestData>(this.form, fields);
+
+    this.authenticationService.signup(data).subscribe();
   }
-
-  private buildUserDataForRequest() {
-
-  }
-
 }
