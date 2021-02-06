@@ -45,9 +45,9 @@ export class ShopService {
     );
   }
 
-  updateShop(shopUpdateData: ShopUpdateRequestData): Observable<boolean> {
+  updateShop(shopUpdateData: ShopUpdateRequestData, shopId: string): Observable<boolean> {
     return this.http
-      .patch(`${environment.url}/shops`,
+      .patch(`${environment.url}/shops/${shopId}`,
         shopUpdateData
       )
       .pipe(
@@ -56,8 +56,8 @@ export class ShopService {
       );
   }
 
-  deleteShop(): Observable<boolean> {
-    return this.http.delete(`${environment.url}/shops`)
+  deleteShop(shopId: string): Observable<boolean> {
+    return this.http.delete(`${environment.url}/shops/${shopId}`)
     .pipe(
       catchError(this.handleError),
       mapTo(true)
