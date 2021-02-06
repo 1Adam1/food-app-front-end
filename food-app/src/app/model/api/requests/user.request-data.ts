@@ -7,7 +7,6 @@ export interface UserCreateRequestData {
 }
 
 export interface UserUpdateRequestData {
-  password?: string;
   name?: string;
   surname?: string;
   description?: string;
