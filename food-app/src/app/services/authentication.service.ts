@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { UserCreateRequestData } from '../model/api/requests/user.request-date';
+import { UserCreateRequestData } from '../model/api/requests/user.request-data';
 import { UserResponseData } from '../model/api/responses/user.response-data';
 import { Token } from '../model/interfaces/token';
 import { UserData } from '../model/interfaces/user-data.interface';

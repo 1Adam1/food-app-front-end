@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, mapTo, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { UserUpdateRequestData } from '../model/api/requests/user.request-date';
+import { UserUpdateRequestData } from '../model/api/requests/user.request-data';
 import { UserResponseData } from '../model/api/responses/user.response-data';
 import { UserData } from '../model/interfaces/user-data.interface';
 import { ObjectConverterService } from './object-converter.service';

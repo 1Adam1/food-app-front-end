@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
-import { UserCreateRequestData } from 'src/app/model/api/requests/user.request-date';
+import { UserCreateRequestData } from 'src/app/model/api/requests/user.request-data';
 import { UserData } from 'src/app/model/interfaces/user-data.interface';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ObjectConverterService } from 'src/app/services/object-converter.service';
