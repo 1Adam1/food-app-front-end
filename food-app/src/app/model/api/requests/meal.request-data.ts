@@ -8,7 +8,7 @@ export interface MealCreateRequestData {
   ingredients: Ingredient[];
 }
 
-export interface mealUpdateRequestData {
+export interface MealUpdateRequestData {
   name?: string;
   description?: string;
   recipe?: Recipe;
