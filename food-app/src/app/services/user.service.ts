@@ -1,16 +1,19 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, mapTo, tap } from 'rxjs/operators';
+import { catchError, mapTo, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserUpdateRequestData } from '../model/api/requests/user.request-date';
+import { UserResponseData } from '../model/api/responses/user.response-data';
+import { UserData } from '../model/interfaces/user-data.interface';
+import { ObjectConverterService } from './object-converter.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private converter: ObjectConverterService) { }
 
   updateLogedUser(userUpdateData: UserUpdateRequestData): Observable<boolean> {
     return this.http
@@ -23,12 +26,12 @@ export class UserService {
       );
   }
 
-  getLogedUser(): Observable<boolean> {
+  getLogedUser(): Observable<UserData> {
     return this.http
     .get(`${environment.url}/users/me`)
     .pipe(
       catchError(this.handleError),
-      mapTo(true)
+      map(result => this.processFetchedUserData(result as UserResponseData))
     );
   }
   
@@ -39,6 +42,12 @@ export class UserService {
         catchError(this.handleError),
         mapTo(true)
       );
+  }
+
+  private processFetchedUserData(data: UserResponseData): UserData {
+    const user = data.user;
+
+    return this.converter.convertResponseToObject<UserData>(user);
   }
 
   private handleError(errorResponse: HttpErrorResponse) {

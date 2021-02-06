@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { UserCreateRequestData } from '../model/api/requests/user.request-date';
+import { UserResponseData } from '../model/api/responses/user.response-data';
 import { Token } from '../model/interfaces/token';
 import { UserData } from '../model/interfaces/user-data.interface';
 
@@ -28,7 +29,7 @@ export class AuthenticationService {
       )
       .pipe(
         catchError(this.handleError),
-        tap(result => this.performLogin(result)),
+        tap(result => this.performLogin(result as UserResponseData)),
         mapTo(true)
       );
   }
@@ -40,7 +41,7 @@ export class AuthenticationService {
       )
       .pipe(
         catchError(this.handleError),
-        tap(result => this.performSignup(result)),
+        tap(result => this.performSignup(result as UserResponseData)),
         mapTo(true)
       );
   }
@@ -79,15 +80,15 @@ export class AuthenticationService {
     return value ? {token: value} : undefined;
   }
 
-  private performLogin(resultData) {
+  private performLogin(resultData: UserResponseData) {
     this.handleAuthentication(resultData);
   }
 
-  private performSignup(resultData) {
+  private performSignup(resultData: UserResponseData) {
     this.handleAuthentication(resultData);
   }
 
-  private handleAuthentication(resultData) {
+  private handleAuthentication(resultData: UserResponseData) {
     this.user = resultData.user;
     this.storeAuthenticationToken(resultData.token);
     this.router.navigate(['/home']);

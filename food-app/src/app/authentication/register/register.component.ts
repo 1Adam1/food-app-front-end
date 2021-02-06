@@ -3,7 +3,7 @@ import { FormControl, FormControlDirective, FormGroup, Validators } from '@angul
 import { UserCreateRequestData } from 'src/app/model/api/requests/user.request-date';
 import { UserData } from 'src/app/model/interfaces/user-data.interface';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { FormValuesToObjectConverterService } from 'src/app/services/form-values-to-object-converter.service';
+import { ObjectConverterService } from 'src/app/services/object-converter.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +13,7 @@ import { FormValuesToObjectConverterService } from 'src/app/services/form-values
 export class RegisterComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService, private converter: FormValuesToObjectConverterService) { }
+  constructor(private authenticationService: AuthenticationService, private converter: ObjectConverterService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
       'surname',
       'description'
     ];
-    const data = this.converter.convert<UserCreateRequestData>(this.form, fields);
+    const data = this.converter.convertFormFieldsToObject<UserCreateRequestData>(this.form, fields);
 
     this.authenticationService.signup(data).subscribe();
   }
