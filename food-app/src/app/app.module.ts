@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotAuthenticatedUserGuard } from './authentication/guards/not-authenticated-user.guard';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { RegisterComponent } from './authentication/register/register.component';
+import { UserEditComponent } from './components/user/user-edit/user-edit.component';
+import { UserInfoComponent } from './components/user/user-info/user-info.component';
+import { LoadingContentComponent } from './components/shared/loading-content/loading-content.component';
 
 const routes: Routes = [
   {
@@ -35,6 +38,16 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard]
   },
   {
+    path: 'me',
+    component: UserInfoComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'me/edit',
+    component: UserEditComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
     path: '**',
     redirectTo: '/home'
   }
@@ -45,7 +58,10 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     AuthenticatedUserAppComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserEditComponent,
+    UserInfoComponent,
+    LoadingContentComponent
   ],
   imports: [
     BrowserModule,
