@@ -47,6 +47,7 @@ export class AuthenticationService {
   }
 
   logout(): Observable<boolean> {
+    console.log('logout');
     return this.http
       .post(`${environment.url}/users/logout`, {})
       .pipe(
@@ -64,6 +65,15 @@ export class AuthenticationService {
         tap(() => this.performLogoutAll()),
         mapTo(true)
       );
+  }
+
+  deleteLogedUser(): Observable<boolean> {
+    return this.http.delete(`${environment.url}/users/me`)
+    .pipe(
+      catchError(this.handleError),
+      tap(() => this.handleUserDeletion()),
+      mapTo(true)
+    );
   }
 
   isUserLoged(): boolean {
@@ -101,6 +111,12 @@ export class AuthenticationService {
 
   private performLogoutAll() {
     this.performLogout();
+  }
+
+  private handleUserDeletion() {
+    this.user = undefined;
+    this.removeAuthenticationToken();
+    this.router.navigate(['/login']);
   }
 
   private handleError(errorResponse: HttpErrorResponse) {

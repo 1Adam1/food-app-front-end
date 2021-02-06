@@ -1,11 +1,12 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, mapTo, map } from 'rxjs/operators';
+import { forkJoin, Observable, throwError } from 'rxjs';
+import { catchError, mapTo, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserUpdateRequestData } from '../model/api/requests/user.request-data';
 import { UserResponseData } from '../model/api/responses/user.response-data';
 import { UserData } from '../model/interfaces/user-data.interface';
+import { AuthenticationService } from './authentication.service';
 import { ObjectConverterService } from './object-converter.service';
 
 @Injectable({
@@ -13,7 +14,7 @@ import { ObjectConverterService } from './object-converter.service';
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private converter: ObjectConverterService) { }
+  constructor(private http: HttpClient, private converter: ObjectConverterService, private authenticationService: AuthenticationService) { }
 
   updateLogedUser(userUpdateData: UserUpdateRequestData): Observable<boolean> {
     return this.http
@@ -33,15 +34,6 @@ export class UserService {
       catchError(this.handleError),
       map(result => this.processFetchedUserData(result as UserResponseData))
     );
-  }
-  
-  deleteLogedUser(): Observable<boolean> {
-    return this.http
-      .delete(`${environment.url}/users/me`)
-      .pipe(
-        catchError(this.handleError),
-        mapTo(true)
-      );
   }
 
   private processFetchedUserData(data: UserResponseData): UserData {
