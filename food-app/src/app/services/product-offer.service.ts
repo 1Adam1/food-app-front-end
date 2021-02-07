@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, map, mapTo } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProductOfferCreateRequestData, ProductOfferUpdateRequestData } from '../model/api/requests/product-offer.request-data';
 import { ProductOfferResponseData } from '../model/api/responses/product-offer.response-data';
@@ -13,72 +11,39 @@ import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 })
 export class ProductOfferService {
 
-  constructor(private http: HttpClient, private commonMethodsForHttpService: CommonMethodsForHttpService) { }
+  constructor(private commonMethodsForHttpService: CommonMethodsForHttpService) { }
 
   createProductOffer(
-    productOfferCreationData: ProductOfferCreateRequestData, 
+    creationData: ProductOfferCreateRequestData, 
     productId: string, 
     shopId: string
   ): Observable<boolean> {
-    return this.http
-      .post(`${environment.url}/product-offers?shopid=${shopId}&productId=${productId}`,
-        productOfferCreationData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+    const url = `${environment.url}/product-offers?shopId=${shopId}&productId=${productId}`;
+    return this.commonMethodsForHttpService.createData(creationData, url);
   }
 
-  getProductOffer(productOfferId: string): Observable<ProductOffer> {
-    return this.http
-    .get<ProductOfferResponseData>(`${environment.url}/product-offers/${productOfferId}`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-          .processFetchedSingleData<ProductOfferResponseData, ProductOffer>(result))
-    );
+  getProductOffer(id: string): Observable<ProductOffer> {
+    const url = `${environment.url}/product-offers/${id}`;
+    return this.commonMethodsForHttpService.getSingleData<ProductOfferResponseData, ProductOffer>(url);
   }
 
-  getAllProductOffersForShop(shopId: string): Observable<ProductOffer[]> {
-    return this.http
-    .get<ProductOfferResponseData[]>(`${environment.url}/shops/${shopId}/offers`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-          .processFetchedMultiData<ProductOfferResponseData, ProductOffer>(result))
-    );
+  getAllProductOffersForShop(id: string): Observable<ProductOffer[]> {
+    const url = `${environment.url}/shops/${id}/offers`;
+    return this.commonMethodsForHttpService.getMultiData<ProductOfferResponseData, ProductOffer>(url);
   }
 
-  getAllProductOffersForProduct(productId: string): Observable<ProductOffer[]> {
-    return this.http
-    .get<ProductOfferResponseData[]>(`${environment.url}/products/${productId}/offers`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-          .processFetchedMultiData<ProductOfferResponseData, ProductOffer>(result))
-    );
+  getAllProductOffersForProduct(id: string): Observable<ProductOffer[]> {
+    const url = `${environment.url}/products/${id}/offers`;
+    return this.commonMethodsForHttpService.getMultiData<ProductOfferResponseData, ProductOffer>(url);
   }
 
-  updateProductOffer(productOfferUpdateData: ProductOfferUpdateRequestData, productOfferId: string): Observable<boolean> {
-    return this.http
-      .patch(`${environment.url}/product-offers/${productOfferId}`,
-        productOfferUpdateData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+  updateProductOffer(updateData: ProductOfferUpdateRequestData, id: string): Observable<boolean> {
+    const url = `${environment.url}/product-offers/${id}`;
+    return this.commonMethodsForHttpService.updataData(updateData, url);
   }
 
-  deleteProductOffer(productOfferId: string): Observable<boolean> {
-    return this.http.delete(`${environment.url}/product-offers/${productOfferId}`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      mapTo(true)
-    );
+  deleteProductOffer(id: string): Observable<boolean> {
+    const url = `${environment.url}/product-offers/${id}`;
+    return this.commonMethodsForHttpService.deleteData(url);
   }
 }

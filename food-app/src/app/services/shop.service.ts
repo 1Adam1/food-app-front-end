@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { map, mapTo } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ShopCreateRequestData, ShopUpdateRequestData } from '../model/api/requests/shop.request-data';
 import { ShopResponseData } from '../model/api/responses/shop.responses-data';
@@ -14,57 +11,30 @@ import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 })
 export class ShopService {
 
-  constructor(private http: HttpClient, private commonMethodsForHttpService: CommonMethodsForHttpService) { }
+  constructor(private commonMethodsForHttpService: CommonMethodsForHttpService) { }
 
-  createShop(shopCreationData: ShopCreateRequestData): Observable<boolean> {
-    return this.http
-      .post(`${environment.url}/shops`,
-        shopCreationData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+  createShop(creationData: ShopCreateRequestData): Observable<boolean> {
+    const url = `${environment.url}/shops`;
+    return this.commonMethodsForHttpService.createData(creationData, url);
   }
   
-  getShop(shopId: string): Observable<Shop> {
-    return this.http
-    .get<ShopResponseData>(`${environment.url}/shops/${shopId}`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-          .processFetchedSingleData<ShopResponseData, Shop>(result))
-    );
+  getShop(id: string): Observable<Shop> {
+    const url = `${environment.url}/shops/${id}`;
+    return this.commonMethodsForHttpService.getSingleData<ShopResponseData, Shop>(url);
   }
 
   getAllShops(): Observable<Shop[]> {
-    return this.http
-    .get<ShopResponseData[]>(`${environment.url}/users/me/shops`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-        .processFetchedMultiData<ShopResponseData, Shop>(result))
-    );
+    const url = `${environment.url}/users/me/shops`;
+    return this.commonMethodsForHttpService.getMultiData<ShopResponseData, Shop>(url);
   }
 
-  updateShop(shopUpdateData: ShopUpdateRequestData, shopId: string): Observable<boolean> {
-    return this.http
-      .patch(`${environment.url}/shops/${shopId}`,
-        shopUpdateData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+  updateShop(updateData: ShopUpdateRequestData, id: string): Observable<boolean> {
+    const url = `${environment.url}/shops/${id}`;
+    return this.commonMethodsForHttpService.updataData(updateData, url);
   }
 
-  deleteShop(shopId: string): Observable<boolean> {
-    return this.http.delete(`${environment.url}/shops/${shopId}`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      mapTo(true)
-    );
+  deleteShop(id: string): Observable<boolean> {
+    const url = `${environment.url}/shops/${id}`;
+    return this.commonMethodsForHttpService.deleteData(url);
   }
 }

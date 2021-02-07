@@ -1,12 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, mapTo, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserUpdateRequestData } from '../model/api/requests/user.request-data';
 import { UserResponseData } from '../model/api/responses/user.response-data';
 import { UserData } from '../model/interfaces/user-data.interface';
-import { AuthenticationService } from './authentication.service';
 import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 
 @Injectable({
@@ -14,27 +11,15 @@ import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private commonMethodsForHttpService: CommonMethodsForHttpService, private authenticationService: AuthenticationService) { }
+  constructor(private commonMethodsForHttpService: CommonMethodsForHttpService) { }
   
   getLogedUser(): Observable<UserData> {
-    return this.http
-    .get<UserResponseData>(`${environment.url}/users/me`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-          .processFetchedSingleData<UserResponseData, UserData>(result))
-    );
+    const url = `${environment.url}/users/me`;
+    return this.commonMethodsForHttpService.getSingleData<UserResponseData, UserData>(url);
   }
 
-  updateLogedUser(userUpdateData: UserUpdateRequestData): Observable<boolean> {
-    return this.http
-      .patch(`${environment.url}/users/me`,
-        userUpdateData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+  updateLogedUser(updateData: UserUpdateRequestData): Observable<boolean> {
+    const url = `${environment.url}/users/me`;
+    return this.commonMethodsForHttpService.updataData(updateData, url);
   }
 }

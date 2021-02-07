@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { map, mapTo } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 import { ProductCreateRequestData, ProductUpdateRequestData } from '../model/api/requests/product.request-data';
@@ -14,57 +11,30 @@ import { Product } from '../model/interfaces/product.interface';
 })
 export class ProductService {
 
-  constructor(private http: HttpClient, private commonMethodsForHttpService: CommonMethodsForHttpService) { }
+  constructor(private commonMethodsForHttpService: CommonMethodsForHttpService) { }
 
-  createProduct(productCreationData: ProductCreateRequestData): Observable<boolean> {
-    return this.http
-      .post(`${environment.url}/products`,
-        productCreationData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+  createProduct(creationData: ProductCreateRequestData): Observable<boolean> {
+    const url = `${environment.url}/products`;
+    return this.commonMethodsForHttpService.createData(creationData, url);
   }
   
-  getProduct(productId: string): Observable<Product> {
-    return this.http
-    .get<ProductResponseData>(`${environment.url}/products/${productId}`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-          .processFetchedSingleData<ProductResponseData, Product>(result))
-    );
+  getProduct(id: string): Observable<Product> {
+    const url = `${environment.url}/products/${id}`;
+    return this.commonMethodsForHttpService.getSingleData<ProductResponseData, Product>(url);
   }
 
   getAllProducts(): Observable<Product[]> {
-    return this.http
-    .get<ProductResponseData[]>(`${environment.url}/users/me/products`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-        .processFetchedMultiData<ProductResponseData, Product>(result))
-    );
+    const url = `${environment.url}/users/me/products`;
+    return this.commonMethodsForHttpService.getMultiData<ProductResponseData, Product>(url);
   }
 
-  updateProduct(productUpdateData: ProductUpdateRequestData, productId: string): Observable<boolean> {
-    return this.http
-      .patch(`${environment.url}/products/${productId}`,
-        productUpdateData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+  updateProduct(updateData: ProductUpdateRequestData, id: string): Observable<boolean> {
+    const url = `${environment.url}/products/${id}`;
+    return this.commonMethodsForHttpService.updataData(updateData, url);
   }
 
-  deleteProduct(productId: string): Observable<boolean> {
-    return this.http.delete(`${environment.url}/products/${productId}`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      mapTo(true)
-    );
+  deleteProduct(id: string): Observable<boolean> {
+    const url = `${environment.url}/products/${id}`;
+    return this.commonMethodsForHttpService.deleteData(url);
   }
 }

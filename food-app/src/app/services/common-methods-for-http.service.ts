@@ -55,7 +55,7 @@ export class CommonMethodsForHttpService {
     );
   }
 
-  processFetchedMultiData<TData, TResult>(data: TData[]): TResult[] {
+  private processFetchedMultiData<TData, TResult>(data: TData[]): TResult[] {
     const results = [];
 
     data.forEach(dataPart => {
@@ -64,11 +64,11 @@ export class CommonMethodsForHttpService {
     return results;
   }
 
-  processFetchedSingleData<TData, TResult>(data: TData): TResult {
+  private processFetchedSingleData<TData, TResult>(data: TData): TResult {
     return this.converter.convertResponseToObject<TResult>(data);
   }
 
-  handleError(errorResponse: HttpErrorResponse) {
+  private handleError(errorResponse: HttpErrorResponse) {
     return throwError('Error');
   }
 }

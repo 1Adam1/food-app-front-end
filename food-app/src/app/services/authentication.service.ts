@@ -47,7 +47,6 @@ export class AuthenticationService {
   }
 
   logout(): Observable<boolean> {
-    console.log('logout');
     return this.http
       .post(`${environment.url}/users/logout`, {})
       .pipe(
