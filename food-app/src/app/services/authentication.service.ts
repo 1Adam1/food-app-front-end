@@ -21,7 +21,7 @@ export class AuthenticationService {
 
   login(login: string, password: string): Observable<boolean> {
     return this.http
-      .post(`${environment.url}/users/login`, 
+      .post<UserResponseData>(`${environment.url}/users/login`, 
         {
           login, 
           password
@@ -29,19 +29,19 @@ export class AuthenticationService {
       )
       .pipe(
         catchError(this.handleError),
-        tap(result => this.performLogin(result as UserResponseData)),
+        tap(result => this.performLogin(result)),
         mapTo(true)
       );
   }
 
   signup(userCreationData: UserCreateRequestData): Observable<boolean> {
     return this.http
-      .post(`${environment.url}/users`,
+      .post<UserResponseData>(`${environment.url}/users`,
         userCreationData
       )
       .pipe(
         catchError(this.handleError),
-        tap(result => this.performSignup(result as UserResponseData)),
+        tap(result => this.performSignup(result)),
         mapTo(true)
       );
   }

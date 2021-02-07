@@ -32,34 +32,34 @@ export class ProductOfferService {
 
   getProductOffer(productOfferId: string): Observable<ProductOffer> {
     return this.http
-    .get(`${environment.url}/product-offers/${productOfferId}`)
+    .get<ProductOfferResponseData>(`${environment.url}/product-offers/${productOfferId}`)
     .pipe(
       catchError(this.commonMethodsForHttpService.handleError),
       map(result => 
         this.commonMethodsForHttpService
-          .processFetchedSingleData<ProductOfferResponseData, ProductOffer>(result as ProductOfferResponseData))
+          .processFetchedSingleData<ProductOfferResponseData, ProductOffer>(result))
     );
   }
 
   getAllProductOffersForShop(shopId: string): Observable<ProductOffer[]> {
     return this.http
-    .get(`${environment.url}/shops/${shopId}/offers`)
+    .get<ProductOfferResponseData[]>(`${environment.url}/shops/${shopId}/offers`)
     .pipe(
       catchError(this.commonMethodsForHttpService.handleError),
       map(result => 
         this.commonMethodsForHttpService
-          .processFetchedMultiData<ProductOfferResponseData, ProductOffer>(result as ProductOfferResponseData[]))
+          .processFetchedMultiData<ProductOfferResponseData, ProductOffer>(result))
     );
   }
 
   getAllProductOffersForProduct(productId: string): Observable<ProductOffer[]> {
     return this.http
-    .get(`${environment.url}/products/${productId}/offers`)
+    .get<ProductOfferResponseData[]>(`${environment.url}/products/${productId}/offers`)
     .pipe(
       catchError(this.commonMethodsForHttpService.handleError),
       map(result => 
         this.commonMethodsForHttpService
-          .processFetchedMultiData<ProductOfferResponseData, ProductOffer>(result as ProductOfferResponseData[]))
+          .processFetchedMultiData<ProductOfferResponseData, ProductOffer>(result))
     );
   }
 

@@ -29,23 +29,23 @@ export class ShopService {
   
   getShop(shopId: string): Observable<Shop> {
     return this.http
-    .get(`${environment.url}/shops/${shopId}`)
+    .get<ShopResponseData>(`${environment.url}/shops/${shopId}`)
     .pipe(
       catchError(this.commonMethodsForHttpService.handleError),
       map(result => 
         this.commonMethodsForHttpService
-          .processFetchedSingleData<ShopResponseData, Shop>(result as ShopResponseData))
+          .processFetchedSingleData<ShopResponseData, Shop>(result))
     );
   }
 
   getAllShops(): Observable<Shop[]> {
     return this.http
-    .get(`${environment.url}/users/me/shops`)
+    .get<ShopResponseData[]>(`${environment.url}/users/me/shops`)
     .pipe(
       catchError(this.commonMethodsForHttpService.handleError),
       map(result => 
         this.commonMethodsForHttpService
-        .processFetchedMultiData<ShopResponseData, Shop>(result as ShopResponseData[]))
+        .processFetchedMultiData<ShopResponseData, Shop>(result))
     );
   }
 
