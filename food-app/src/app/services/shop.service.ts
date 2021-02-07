@@ -38,9 +38,9 @@ export class ShopService {
     );
   }
 
-  getAllShop(): Observable<Shop[]> {
+  getAllShops(): Observable<Shop[]> {
     return this.http
-    .get(`${environment.url}/users/me/shop`)
+    .get(`${environment.url}/users/me/shops`)
     .pipe(
       catchError(this.commonMethodsForHttpService.handleError),
       map(result => 
