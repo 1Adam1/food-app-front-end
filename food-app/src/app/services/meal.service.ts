@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { map, mapTo } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 import { MealCreateRequestData, MealUpdateRequestData } from '../model/api/requests/meal.request-data';
@@ -14,56 +12,30 @@ import { Meal } from '../model/interfaces/meal.interface';
 })
 export class MealService {
 
-  constructor(private http: HttpClient, private commonMethodsForHttpService: CommonMethodsForHttpService) { }
+  constructor(private commonMethodsForHttpService: CommonMethodsForHttpService) { }
 
-  createMeal(mealCreationData: MealCreateRequestData): Observable<boolean> {
-    return this.http
-      .post(`${environment.url}/meals`,
-        mealCreationData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+  createMeal(creationData: MealCreateRequestData): Observable<boolean> {
+    const url = `${environment.url}/meals`;
+    return this.commonMethodsForHttpService.createData(creationData, url);
   }
 
-  getMeal(mealId: string): Observable<Meal> {
-    return this.http
-    .get<MealResponseData>(`${environment.url}/meals/${mealId}`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-          .processFetchedSingleData<MealResponseData, Meal>(result))
-    );
+  getMeal(id: string): Observable<Meal> {
+    const url = `${environment.url}/meals/${id}`;
+    return this.commonMethodsForHttpService.getSingleData<MealResponseData, Meal>(url);
   }
 
   getAllMeals(): Observable<Meal[]> {
-    return this.http
-    .get<MealResponseData[]>(`${environment.url}/meals`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      map(result => 
-        this.commonMethodsForHttpService
-          .processFetchedMultiData<MealResponseData, Meal>(result))
-    );
+    const url = `${environment.url}/meals`;
+    return this.commonMethodsForHttpService.getMultiData<MealResponseData, Meal>(url);
   }
-  updateMeal(mealUpdateData: MealUpdateRequestData, mealId: string): Observable<boolean> {
-    return this.http
-      .patch(`${environment.url}/meals/${mealId}`,
-        mealUpdateData
-      )
-      .pipe(
-        catchError(this.commonMethodsForHttpService.handleError),
-        mapTo(true)
-      );
+
+  updateMeal(updateData: MealUpdateRequestData, mealId: string): Observable<boolean> {
+    const url = `${environment.url}/meals/${mealId}`;
+    return this.commonMethodsForHttpService.updataData(updateData, url);
   }
 
   deleteMeal(mealId: string): Observable<boolean> {
-    return this.http.delete(`${environment.url}/meals/${mealId}`)
-    .pipe(
-      catchError(this.commonMethodsForHttpService.handleError),
-      mapTo(true)
-    );
+    const url = `${environment.url}/meals/${mealId}`;
+    return this.commonMethodsForHttpService.deleteData(url);
   }
 }
