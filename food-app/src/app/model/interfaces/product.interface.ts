@@ -1,7 +1,7 @@
 import { Unit } from "../enums/unit.enum";
-import { ProductOffer } from "./product-offer.interface";
+import { Indexable } from "./indexable.interface";
 
-export interface Product {
+export interface Product extends Indexable {
   name: string;
   description: string;
   defaultUnit: Unit;
