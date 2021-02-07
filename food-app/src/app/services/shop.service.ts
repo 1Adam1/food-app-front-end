@@ -7,14 +7,14 @@ import { environment } from 'src/environments/environment';
 import { ShopCreateRequestData, ShopUpdateRequestData } from '../model/api/requests/shop.request-data';
 import { ShopResponseData } from '../model/api/responses/shop.responses-data';
 import { Shop } from '../model/interfaces/shop.interface';
-import { ObjectConverterService } from './object-converter.service';
+import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
 
-  constructor(private http: HttpClient, private converter: ObjectConverterService) { }
+  constructor(private http: HttpClient, private commonMethodsForHttpService: CommonMethodsForHttpService) { }
 
   createShop(shopCreationData: ShopCreateRequestData): Observable<boolean> {
     return this.http
@@ -22,7 +22,7 @@ export class ShopService {
         shopCreationData
       )
       .pipe(
-        catchError(this.handleError),
+        catchError(this.commonMethodsForHttpService.handleError),
         mapTo(true)
       );
   }
@@ -31,8 +31,10 @@ export class ShopService {
     return this.http
     .get(`${environment.url}/shops/${shopId}`)
     .pipe(
-      catchError(this.handleError),
-      map(result => this.processFetchedShop(result as ShopResponseData))
+      catchError(this.commonMethodsForHttpService.handleError),
+      map(result => 
+        this.commonMethodsForHttpService
+          .processFetchedSingleData<ShopResponseData, Shop>(result as ShopResponseData))
     );
   }
 
@@ -40,8 +42,10 @@ export class ShopService {
     return this.http
     .get(`${environment.url}/users/me/shop`)
     .pipe(
-      catchError(this.handleError),
-      map(result => this.processFetchedShops(result as ShopResponseData[]))
+      catchError(this.commonMethodsForHttpService.handleError),
+      map(result => 
+        this.commonMethodsForHttpService
+        .processFetchedMultiData<ShopResponseData, Shop>(result as ShopResponseData[]))
     );
   }
 
@@ -51,7 +55,7 @@ export class ShopService {
         shopUpdateData
       )
       .pipe(
-        catchError(this.handleError),
+        catchError(this.commonMethodsForHttpService.handleError),
         mapTo(true)
       );
   }
@@ -59,25 +63,8 @@ export class ShopService {
   deleteShop(shopId: string): Observable<boolean> {
     return this.http.delete(`${environment.url}/shops/${shopId}`)
     .pipe(
-      catchError(this.handleError),
+      catchError(this.commonMethodsForHttpService.handleError),
       mapTo(true)
     );
-  }
-
-  private processFetchedShops(data: ShopResponseData[]): Shop[] {
-    const results = [];
-
-    data.forEach(dataPart => {
-      results.push(this.processFetchedShop(dataPart));
-    });
-    return results;
-  }
-
-  private processFetchedShop(data: ShopResponseData): Shop {
-    return this.converter.convertResponseToObject<Shop>(data);
-  }
-
-  private handleError(errorResponse: HttpErrorResponse) {
-    return throwError('Error');
   }
 }

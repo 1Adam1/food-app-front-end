@@ -6,14 +6,14 @@ import { environment } from 'src/environments/environment';
 import { ProductOfferCreateRequestData, ProductOfferUpdateRequestData } from '../model/api/requests/product-offer.request-data';
 import { ProductOfferResponseData } from '../model/api/responses/product-offer.response-data';
 import { ProductOffer } from '../model/interfaces/product-offer.interface';
-import { ObjectConverterService } from './object-converter.service';
+import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductOfferService {
 
-  constructor(private http: HttpClient, private converter: ObjectConverterService) { }
+  constructor(private http: HttpClient, private commonMethodsForHttpService: CommonMethodsForHttpService) { }
 
   createProductOffer(
     productOfferCreationData: ProductOfferCreateRequestData, 
@@ -25,7 +25,7 @@ export class ProductOfferService {
         productOfferCreationData
       )
       .pipe(
-        catchError(this.handleError),
+        catchError(this.commonMethodsForHttpService.handleError),
         mapTo(true)
       );
   }
@@ -34,8 +34,10 @@ export class ProductOfferService {
     return this.http
     .get(`${environment.url}/product-offers/${productOfferId}`)
     .pipe(
-      catchError(this.handleError),
-      map(result => this.processFetchedProductOffer(result as ProductOfferResponseData))
+      catchError(this.commonMethodsForHttpService.handleError),
+      map(result => 
+        this.commonMethodsForHttpService
+          .processFetchedSingleData<ProductOfferResponseData, ProductOffer>(result as ProductOfferResponseData))
     );
   }
 
@@ -43,8 +45,10 @@ export class ProductOfferService {
     return this.http
     .get(`${environment.url}/shops/${shopId}/offers`)
     .pipe(
-      catchError(this.handleError),
-      map(result => this.processFetchedProductOffers(result as ProductOfferResponseData[]))
+      catchError(this.commonMethodsForHttpService.handleError),
+      map(result => 
+        this.commonMethodsForHttpService
+          .processFetchedMultiData<ProductOfferResponseData, ProductOffer>(result as ProductOfferResponseData[]))
     );
   }
 
@@ -52,8 +56,10 @@ export class ProductOfferService {
     return this.http
     .get(`${environment.url}/products/${productId}/offers`)
     .pipe(
-      catchError(this.handleError),
-      map(result => this.processFetchedProductOffers(result as ProductOfferResponseData[]))
+      catchError(this.commonMethodsForHttpService.handleError),
+      map(result => 
+        this.commonMethodsForHttpService
+          .processFetchedMultiData<ProductOfferResponseData, ProductOffer>(result as ProductOfferResponseData[]))
     );
   }
 
@@ -63,7 +69,7 @@ export class ProductOfferService {
         productOfferUpdateData
       )
       .pipe(
-        catchError(this.handleError),
+        catchError(this.commonMethodsForHttpService.handleError),
         mapTo(true)
       );
   }
@@ -71,25 +77,8 @@ export class ProductOfferService {
   deleteProductOffer(productOfferId: string): Observable<boolean> {
     return this.http.delete(`${environment.url}/product-offers/${productOfferId}`)
     .pipe(
-      catchError(this.handleError),
+      catchError(this.commonMethodsForHttpService.handleError),
       mapTo(true)
     );
-  }
-
-  private processFetchedProductOffers(data: ProductOfferResponseData[]): ProductOffer[] {
-    const results = [];
-
-    data.forEach(dataPart => {
-      results.push(this.processFetchedProductOffer(dataPart));
-    });
-    return results;
-  }
-
-  private processFetchedProductOffer(data: ProductOfferResponseData): ProductOffer {
-    return this.converter.convertResponseToObject<ProductOffer>(data);
-  }
-
-  private handleError(errorResponse: HttpErrorResponse) {
-    return throwError('Error');
   }
 }

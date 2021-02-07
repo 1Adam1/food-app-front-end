@@ -7,21 +7,23 @@ import { UserUpdateRequestData } from '../model/api/requests/user.request-data';
 import { UserResponseData } from '../model/api/responses/user.response-data';
 import { UserData } from '../model/interfaces/user-data.interface';
 import { AuthenticationService } from './authentication.service';
-import { ObjectConverterService } from './object-converter.service';
+import { CommonMethodsForHttpService } from './common-methods-for-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private converter: ObjectConverterService, private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private commonMethodsForHttpService: CommonMethodsForHttpService, private authenticationService: AuthenticationService) { }
   
   getLogedUser(): Observable<UserData> {
     return this.http
     .get(`${environment.url}/users/me`)
     .pipe(
-      catchError(this.handleError),
-      map(result => this.processFetchedUserData(result as UserResponseData))
+      catchError(this.commonMethodsForHttpService.handleError),
+      map(result => 
+        this.commonMethodsForHttpService
+          .processFetchedSingleData<UserResponseData, UserData>(result as UserResponseData))
     );
   }
 
@@ -31,18 +33,8 @@ export class UserService {
         userUpdateData
       )
       .pipe(
-        catchError(this.handleError),
+        catchError(this.commonMethodsForHttpService.handleError),
         mapTo(true)
       );
-  }
-
-  private processFetchedUserData(data: UserResponseData): UserData {
-    const user = data.user;
-
-    return this.converter.convertResponseToObject<UserData>(user);
-  }
-
-  private handleError(errorResponse: HttpErrorResponse) {
-    return throwError('Error');
   }
 }
