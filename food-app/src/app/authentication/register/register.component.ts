@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlDirective, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserCreateRequestData } from 'src/app/model/api/requests/user.request-data';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ObjectConverterService } from 'src/app/services/object-converter.service';
@@ -12,7 +13,7 @@ import { ObjectConverterService } from 'src/app/services/object-converter.servic
 export class RegisterComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService, private converter: ObjectConverterService) { }
+  constructor(private authenticationService: AuthenticationService, private converter: ObjectConverterService, private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -53,5 +54,9 @@ export class RegisterComponent implements OnInit {
     const data = this.converter.convertFormFieldsToObject<UserCreateRequestData>(this.form, fields);
 
     this.authenticationService.signup(data).subscribe();
+  }
+
+  goToLoginPage() {
+    this.router.navigate(['/login']);
   }
 }

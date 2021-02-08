@@ -1,6 +1,7 @@
 @import './variables.scss';
 
-$main-centered-container-width: 400px;
+$main-centered-container-min-width: 400px;
+$main-centered-container-max-width: 600px;
 
 .button {
   background-color: $primary-color;
@@ -44,69 +45,68 @@ $main-centered-container-width: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  min-width: $main-centered-container-min-width;
+}
 
-  width: $main-centered-container-width;
+.form {
+  padding: 40px;
 
-  .form {
-    padding: 40px;
+  .form-header {
+    text-align: left;
+    font-size: 1.8rem;
 
-    .form-header {
-      text-align: left;
-      font-size: 2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
 
-      margin-bottom: 40px;
-      text-transform: uppercase;
+  .form-group {
+    padding: 5px 0;
+    margin-bottom: 10px;
+    position: relative;
+
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.2rem;
     }
 
-    .form-group {
-      padding: 10px 0;
-      margin-bottom: 10px;
-      position: relative;
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: 7px;
 
-      .form-label {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 1.2rem;
-      }
+      margin-bottom: 5px;
+      border: 2px solid $light-primary-color;
+      border-radius: 4px;
 
-      .form-control {
-        display: block;
-        width: 100%;
-        padding: 7px;
-
-        margin-bottom: 5px;
-        border: 2px solid $light-primary-color;
-        border-radius: 4px;
-
-        font-size: 1rem;
-      }
-
-      .form-control:focus {
-        outline: 0;
-        border-color: $primary-color;
-      }
-
-      .form-control.ng-touched.ng-valid {
-        border-color: $success-color;
-      }
-
-      .form-control.ng-touched.ng-invalid {
-        border-color: $error-color;
-      }
-
-      .form-control-message {
-        display: block;
-
-        color: $error-color;
-        font-size: 0.9rem;
-      }
-
-      .form-submit {
-        display: block;
-        width: 100%;
-        margin-top: 20px;
-      }
+      font-size: 1rem;
     }
 
+    .form-control:focus {
+      outline: 0;
+      border-color: $primary-color;
+    }
+
+    .form-control.ng-touched.ng-valid {
+      border-color: $success-color;
+    }
+
+    .form-control.ng-touched.ng-invalid {
+      border-color: $error-color;
+    }
+
+    .form-control-message {
+      display: block;
+
+      color: $error-color;
+      font-size: 0.9rem;
+    }
+
+    .form-submit {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+    }
   }
 }
