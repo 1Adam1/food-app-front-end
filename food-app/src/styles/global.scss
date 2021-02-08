@@ -1,5 +1,20 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import './variables.scss';
+
+$main-centered-container-width: 400px;
+
+.main-centered-container {
+  background-color: $secondary-color;
+  color: $primary-text-color;
+  box-shadow: $basic-box-shadow;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: $main-centered-container-width;
+
+  .form {
+    padding: 40px;
+  }
 }
