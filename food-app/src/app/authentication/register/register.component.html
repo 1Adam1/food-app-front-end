@@ -10,32 +10,50 @@
     <div class="form-group">
       <label class="form-label required-label" for="login">Login</label>
       <input class="form-control" type="text" id="login" formControlName="login">
-      <span class="form-control-message">Test</span>
+      <span *ngIf="form.get('login').touched">
+        <span class="form-control-message" *ngIf="form.get('login').errors?.required">Field is required</span>
+      </span>
     </div>
     <div class="form-group">
       <label class="form-label required-label" for="password">Password</label>
       <input class="form-control" type="password" id="password" formControlName="password">
-      <span class="form-control-message">Test</span>
+      <span *ngIf="form.get('password').touched">
+        <span class="form-control-message" *ngIf="form.get('password').errors?.required">Field is required</span>
+        <span class="form-control-message" *ngIf="form.get('password').errors?.minlength">
+          Password can't be shorter than 6 characters
+        </span>
+      </span>
     </div>
     <div class="form-group">
       <label class="form-label required-label" for="confirmedPassword">Confirm password</label>
       <input class="form-control" type="password" id="confirmedPassword" formControlName="confirmedPassword">
-      <span class="form-control-message">Test</span>
+      <span *ngIf="form.get('confirmedPassword').touched">
+        <span class="form-control-message" *ngIf="form.get('confirmedPassword').errors?.required">Field is required</span>
+        <span class="form-control-message" *ngIf="form.get('confirmedPassword').errors?.minlength">
+          Password can't be shorter than 6 characters
+        </span>
+        <span class="form-control-message" *ngIf="form.get('confirmedPassword').errors?.passwordsDontMatch">
+          Passwords don't match
+        </span>
+      </span>
     </div>
     <div class="form-group">
       <label class="form-label required-label" for="name">Name</label>
       <input class="form-control" type="text" id="name" formControlName="name">
-      <span class="form-control-message">Test</span>
+      <span *ngIf="form.get('name').touched">
+        <span class="form-control-message" *ngIf="form.get('name').errors?.required">Field is required</span>
+      </span>
     </div>
     <div class="form-group">
       <label class="form-label required-label" for="surname">Surname</label>
       <input class="form-control" type="text" id="surname" formControlName="surname">
-      <span class="form-control-message">Test</span>
+      <span *ngIf="form.get('surname').touched">
+        <span class="form-control-message" *ngIf="form.get('surname').errors?.required">Field is required</span>
+      </span>
     </div>
     <div class="form-group">
       <label class="form-label" for="description">Description</label>
       <textarea class="form-control" id="description" formControlName="description"></textarea>
-      <span class="form-control-message">Test</span>
     </div>
     <div class="form-group">
       <button class="button form-submit" type="submit" [disabled]="!form.valid">Submit</button>

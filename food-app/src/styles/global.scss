@@ -20,6 +20,10 @@ $main-centered-container-max-width: 600px;
   background-color: $dark-primary-color;
 }
 
+.button:disabled {
+  cursor: not-allowed;
+}
+
 .link {
   color: $accent-color;
   font-weight: 700;  
@@ -45,7 +49,7 @@ $main-centered-container-max-width: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   min-width: $main-centered-container-min-width;
 }
 
