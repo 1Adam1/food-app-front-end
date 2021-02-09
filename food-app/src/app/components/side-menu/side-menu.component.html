@@ -1,1 +1,10 @@
-<p>side-menu works!</p>
+<div class="menu">
+  <div class="item" *ngFor="let item of items" (click)="onItemClick(item.url)">
+    <span class="material-icons">
+      {{item.iconName}}
+    </span>
+    <span class="item-name">
+      {{item.name}}
+    </span>
+  </div>
+</div>
