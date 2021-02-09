@@ -6,11 +6,11 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AuthenticatedUserAppComponent } from './components/authenticated-user-app/authenticated-user-app.component';
 import { HomeComponent } from './components/home/home.component';
-import { MealsListComponent } from './components/meals/meals-list/meals-list.component';
-import { PersonsListComponent } from './components/persons/persons-list/persons-list.component';
+import { MealsListComponent } from './components/meal/meals-list/meals-list.component';
+import { PersonsListComponent } from './components/person/persons-list/persons-list.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ShoppingListsListComponent } from './components/shopping-list/shopping-lists-list/shopping-lists-list.component';
-import { ShopsListComponent } from './components/shops/shops-list/shops-list.component';
+import { ShopsListComponent } from './components/shop/shops-list/shops-list.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/user/user-info/user-info.component';
 

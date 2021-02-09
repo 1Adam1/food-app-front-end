@@ -1,0 +1,28 @@
+@import '../../../styles/variables.scss';
+
+$menu-item-height: 120px;
+$item-icon-size: 60px;
+
+.menu {
+
+  .item {
+    padding: 10px;
+    height: $menu-item-height;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .icon {
+      display: block;
+      font-size: $item-icon-size;
+      color: $secondary-accent-color;
+    }
+  }
+
+  .item:hover {
+    background-color: $primary-color;
+    cursor: pointer;
+  }
+}
