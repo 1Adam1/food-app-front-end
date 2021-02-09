@@ -71,7 +71,7 @@ export class CommonMethodsForHttpService {
 
   private handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse instanceof HttpErrorResponse && errorResponse.status === 401) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/app']);
     }
     return throwError('Error');
   }

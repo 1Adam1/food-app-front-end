@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home'
+    redirectTo: '/app'
   },
   {
     path: 'login',
@@ -25,7 +25,7 @@ const routes: Routes = [
     canActivate: [NotAuthenticatedUserGuard]
   },
   {
-    path: 'home',
+    path: 'app',
     component: AuthenticatedUserAppComponent,
     canActivate: [AuthenticationGuard]
   },
@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/home'
+    redirectTo: '/app'
   }
 ];
 

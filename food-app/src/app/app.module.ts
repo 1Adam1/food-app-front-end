@@ -12,7 +12,8 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/user/user-info/user-info.component';
 import { LoadingContentComponent } from './components/shared/loading-content/loading-content.component';
-import { AppHeaderBarComponent } from './components/app-header-bar/app-header-bar.component';
+import { HeaderBarComponent } from './components/header-bar/header-bar.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AppHeaderBarComponent } from './components/app-header-bar/app-header-ba
     UserEditComponent,
     UserInfoComponent,
     LoadingContentComponent,
-    AppHeaderBarComponent
+    HeaderBarComponent,
+    SideMenuComponent
   ],
   imports: [
     BrowserModule,

@@ -100,7 +100,7 @@ export class AuthenticationService {
   private handleAuthentication(resultData: UserResponseData) {
     this.user = resultData.user;
     this.storeAuthenticationToken(resultData.token);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/app']);
   }
 
   private performLogout() {
