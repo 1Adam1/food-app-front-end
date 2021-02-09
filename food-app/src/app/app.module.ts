@@ -20,6 +20,7 @@ import { PersonsListComponent } from './components/person/persons-list/persons-l
 import { MealsListComponent } from './components/meal/meals-list/meals-list.component';
 import { ShopsListComponent } from './components/shop/shops-list/shops-list.component';
 import { ShoppingListsListComponent } from './components/shopping-list/shopping-lists-list/shopping-lists-list.component';
+import { SettingsMenuComponent } from './components/shared/settings-menu/settings-menu.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ShoppingListsListComponent } from './components/shopping-list/shopping-
     PersonsListComponent,
     MealsListComponent,
     ShopsListComponent,
-    ShoppingListsListComponent
+    ShoppingListsListComponent,
+    SettingsMenuComponent
   ],
   imports: [
     BrowserModule,

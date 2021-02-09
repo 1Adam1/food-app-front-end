@@ -1,0 +1,14 @@
+.header-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .menu {
+    position: absolute;
+    right: 15px;
+  }
+}

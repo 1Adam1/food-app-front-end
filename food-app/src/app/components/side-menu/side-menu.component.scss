@@ -4,7 +4,6 @@ $menu-item-height: 120px;
 $item-icon-size: 60px;
 
 .menu {
-
   .item {
     padding: 10px;
     height: $menu-item-height;
@@ -18,6 +17,10 @@ $item-icon-size: 60px;
       display: block;
       font-size: $item-icon-size;
       color: $secondary-accent-color;
+    }
+
+    .item-name {
+      text-transform: uppercase;
     }
   }
 

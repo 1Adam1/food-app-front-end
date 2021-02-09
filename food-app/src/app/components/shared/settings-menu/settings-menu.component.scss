@@ -1,0 +1,21 @@
+@import '../../../../styles/variables.scss';
+
+$menu-item-width: 70px;
+$item-icon-size: 40px;
+
+.menu {
+  height: 100%;
+  width: $menu-item-width;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  .icon {
+    font-size: $item-icon-size;
+    color: $secondary-accent-color;
+  }
+}
+
+.menu:hover {
+  cursor: pointer
+}
