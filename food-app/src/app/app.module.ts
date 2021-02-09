@@ -14,6 +14,7 @@ import { UserInfoComponent } from './components/user/user-info/user-info.compone
 import { LoadingContentComponent } from './components/shared/loading-content/loading-content.component';
 import { HeaderBarComponent } from './components/header-bar/header-bar.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     UserInfoComponent,
     LoadingContentComponent,
     HeaderBarComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

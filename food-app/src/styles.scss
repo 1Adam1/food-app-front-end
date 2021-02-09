@@ -27,3 +27,15 @@ app-root {
   justify-content: center;
   align-items: center;
 }
+
+router-outlet {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+app-authenticated-user-app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}

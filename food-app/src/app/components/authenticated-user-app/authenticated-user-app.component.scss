@@ -1,0 +1,40 @@
+@import '../../../styles/variables.scss';
+
+$sidebar-width: 120px;
+$header-bar-height: 50px;
+
+.authenticated-user-app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: $secondary-color;
+
+  app-header-bar {
+    width: 100%;
+    height: $header-bar-height;
+    background-color: $primary-color;
+    color: $text-icons-color;
+    padding: 5px;
+  }
+
+  .app-main-part {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+
+    app-side-menu {
+      height: 100%;
+      width: $sidebar-width;
+      background-color: $dark-primary-color;
+      color: $text-icons-color;
+      padding: 5px;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 30px;
+    }
+  }
+
+}

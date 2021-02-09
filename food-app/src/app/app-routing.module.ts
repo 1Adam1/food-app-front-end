@@ -5,6 +5,7 @@ import { NotAuthenticatedUserGuard } from './authentication/guards/not-authentic
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AuthenticatedUserAppComponent } from './components/authenticated-user-app/authenticated-user-app.component';
+import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/user/user-info/user-info.component';
 
@@ -27,17 +28,25 @@ const routes: Routes = [
   {
     path: 'app',
     component: AuthenticatedUserAppComponent,
-    canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'me',
-    component: UserInfoComponent,
-    canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'me/edit',
-    component: UserEditComponent,
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthenticationGuard],
+    children: [
+      {
+        path: 'me',
+        component: UserInfoComponent
+      },
+      {
+        path: 'me/edit',
+        component: UserEditComponent
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'home'
+      }
+    ]
   },
   {
     path: '**',
