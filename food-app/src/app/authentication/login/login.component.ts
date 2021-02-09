@@ -21,10 +21,13 @@ export class LoginComponent implements OnInit {
     }
 
     const {login, password} = form.value;
-
-    form.reset();
     
-    this.authenticationService.login(login, password).subscribe();
+    this.authenticationService.login(login, password).subscribe(result => {
+      form.reset();
+    }, error => {
+      window.alert('Wrong login or password');
+    }
+    );
   }
 
   goToRegistrationPage() {

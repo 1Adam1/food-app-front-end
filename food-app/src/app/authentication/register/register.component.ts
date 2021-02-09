@@ -53,7 +53,11 @@ export class RegisterComponent implements OnInit {
     ];
     const data = this.converter.convertFormFieldsToObject<UserCreateRequestData>(this.form, fields);
 
-    this.authenticationService.signup(data).subscribe();
+    this.authenticationService.signup(data).subscribe(result => {
+
+    }, error => {
+      alert('Cannot create user with this data');
+    });
   }
 
   goToLoginPage() {
