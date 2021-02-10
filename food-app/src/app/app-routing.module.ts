@@ -12,6 +12,12 @@ import { ShoppingListsListComponent } from './components/shopping-list/shopping-
 import { ShopsListComponent } from './components/shop/shops-list/shops-list.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserInfoComponent } from './components/user/user-info/user-info.component';
+import { ShopInfoComponent } from './components/shop/shop-info/shop-info.component';
+import { ShopCreateComponent } from './components/shop/shop-create/shop-create.component';
+import { ShopEditComponent } from './components/shop/shop-edit/shop-edit.component';
+import { ProductInfoComponent } from './components/product/product-info/product-info.component';
+import { ProductCreateComponent } from './components/product/product-create/product-create.component';
+import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 
 const routes: Routes = [
   {
@@ -75,11 +81,59 @@ const routes: Routes = [
         }
       },
       {
+        path: 'products/:id',
+        component: ProductInfoComponent,
+        data: {
+          markedSideMenuItemName: 'Products',
+          pageTitle: 'Product - info'
+        }
+      },
+      {
+        path: 'products/new',
+        component: ProductCreateComponent,
+        data: {
+          markedSideMenuItemName: 'Products',
+          pageTitle: 'Product - new'
+        }
+      },
+      {
+        path: 'products/:id/edit',
+        component: ProductEditComponent,
+        data: {
+          markedSideMenuItemName: 'Products',
+          pageTitle: 'Product - edit'
+        }
+      },
+      {
         path: 'shops',
         component: ShopsListComponent,
         data: {
           markedSideMenuItemName: 'Shops',
           pageTitle: 'List of shops'
+        }
+      },
+      {
+        path: 'shops/:id',
+        component: ShopInfoComponent,
+        data: {
+          markedSideMenuItemName: 'Shops',
+          pageTitle: 'Shop - info'
+        }
+      },
+      {
+        path: 'shops/new',
+        component: ShopCreateComponent,
+        data: {
+          markedSideMenuItemName: 'Shops',
+          pageTitle: 'Shop - new'
+        }
+      },
+      {
+        path: 'shops/:id/edit',
+        component: ShopEditComponent,
+        data: {
+          markedSideMenuItemName: 'Shops',
+          pageTitle: 'Shop - edit'
         }
       },
       {

@@ -24,6 +24,9 @@ import { DataInfoComponent } from './components/data-info/data-info.component';
 import { ShopInfoComponent } from './components/shop/shop-info/shop-info.component';
 import { ShopCreateComponent } from './components/shop/shop-create/shop-create.component';
 import { ShopEditComponent } from './components/shop/shop-edit/shop-edit.component';
+import { ProductInfoComponent } from './components/product/product-info/product-info.component';
+import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
+import { ProductCreateComponent } from './components/product/product-create/product-create.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { ShopEditComponent } from './components/shop/shop-edit/shop-edit.compone
     DataInfoComponent,
     ShopInfoComponent,
     ShopCreateComponent,
-    ShopEditComponent
+    ShopEditComponent,
+    ProductInfoComponent,
+    ProductEditComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule,
