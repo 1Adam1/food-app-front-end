@@ -37,6 +37,7 @@ router-outlet {
 
 app-authenticated-user-app {
   width: 100%;
+  min-width: 400px;
   height: 100%;
   display: flex;
 }

@@ -3,6 +3,9 @@
 $menu-item-height: 120px;
 $item-icon-size: 60px;
 
+$small-menu-item-height: 80px;
+$small-item-icon-size: 30px;
+
 .menu {
   .item {
     padding: 10px;
@@ -31,5 +34,22 @@ $item-icon-size: 60px;
   .item:hover {
     background-color: $primary-color;
     cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: $tablet-max-width) {
+  .menu .item {
+    padding: 5px;
+    height: $small-menu-item-height;
+    margin-bottom: 15px;
+
+    .icon {
+      font-size: $small-item-icon-size;
+      margin-bottom: 5px;
+    }
+
+    .item-name {
+      font-size: 0.8rem;
+    }
   }
 }

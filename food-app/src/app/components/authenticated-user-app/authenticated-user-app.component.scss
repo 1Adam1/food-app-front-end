@@ -32,8 +32,56 @@
     .content {
       flex-grow: 1;
       padding: 30px;
-      overflow-y: auto;
+      overflow: none;
+      display: flex;
+      justify-content: center;
+
+      .content-page {
+        background-color: $secondary-color;
+        box-shadow: $basic-box-shadow;
+        height: 100%;
+        overflow: auto;
+        padding: 15px;
+        width: $page-standard-width;
+      }
     }
   }
+}
 
+@media only screen and (max-width: $small-screen-monitor-max-width) {
+  .authenticated-user-app {
+    .app-main-part {
+      app-side-menu: {
+        width: $sidebar-small-width;
+      }
+
+      .content {
+        width: $page-for-small-screen-monitor-width;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $tablet-max-width) {
+  .authenticated-user-app {
+    .app-main-part {
+      .content {
+        width: $page-for-small-devices-width;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $phone-max-width) {
+  .authenticated-user-app {
+    .app-main-part {
+      padding: 0;
+
+      .content {
+        padding-left: 5px;
+        padding-right: 5px;
+        width: $page-for-small-devices-width;
+      }
+    }
+  }
 }
