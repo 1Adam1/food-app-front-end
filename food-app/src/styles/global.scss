@@ -24,6 +24,15 @@ $main-centered-container-max-width: 600px;
   cursor: not-allowed;
 }
 
+.danger-button {
+  background-color: $error-color;
+  border: 2px solid $accent-color;
+}
+
+.danger-button:hover {
+  background-color: $error-color-hover;
+}
+
 .link {
   color: $accent-color;
   font-weight: 700;  
@@ -133,5 +142,13 @@ $main-centered-container-max-width: 600px;
   .section-content {
     font-size: 1.1rem;
     margin: 15px 0 15px 30px;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      margin: 30px;
+      margin-bottom: 30px;
+      width: $section-button-width;
+    }
   }
 }

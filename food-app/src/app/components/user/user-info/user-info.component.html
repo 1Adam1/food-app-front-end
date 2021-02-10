@@ -5,10 +5,14 @@
   <app-data-info [data]="data"></app-data-info>
   <div class="page-section">
     <header class="section-header">Logout from all devices</header>
-    <button (click)="deleteUser()">Logout</button>
+    <div class="section-content">
+      <button class="button" (click)="deleteUser()">Logout</button>
+    </div>
   </div>
   <div class="page-section">
     <header class="section-header">Account deletion</header>
-    <button (click)="deleteUser()">Delete</button>
+    <div class="section-content">
+      <button class="button danger-button" (click)="deleteUser()">Delete</button>
+    </div>
   </div>
 </div>
