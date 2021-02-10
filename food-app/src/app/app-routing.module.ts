@@ -104,46 +104,46 @@ const routes: Routes = [
           pageTitle: 'Product - edit'
         }
       },
-      {
-        path: 'shops',
-        component: ShopsListComponent,
-        data: {
-          markedSideMenuItemName: 'Shops',
-          pageTitle: 'List of shops'
-        }
-      },
-      {
-        path: 'shops/:id',
-        component: ShopInfoComponent,
-        data: {
-          markedSideMenuItemName: 'Shops',
-          pageTitle: 'Shop - info'
-        }
-      },
-      {
-        path: 'shops/new',
-        component: ShopCreateComponent,
-        data: {
-          markedSideMenuItemName: 'Shops',
-          pageTitle: 'Shop - new'
-        }
-      },
-      {
-        path: 'shops/:id/edit',
-        component: ShopEditComponent,
-        data: {
-          markedSideMenuItemName: 'Shops',
-          pageTitle: 'Shop - edit'
-        }
-      },
-      {
-        path: 'shopping-lists',
-        component: ShoppingListsListComponent,
-        data: {
-          markedSideMenuItemName: 'Shopping lists',
-          pageTitle: 'List of shopping lists'
-        }
-      },
+      // {
+      //   path: 'shops',
+      //   component: ShopsListComponent,
+      //   data: {
+      //     markedSideMenuItemName: 'Shops',
+      //     pageTitle: 'List of shops'
+      //   }
+      // },
+      // {
+      //   path: 'shops/:id',
+      //   component: ShopInfoComponent,
+      //   data: {
+      //     markedSideMenuItemName: 'Shops',
+      //     pageTitle: 'Shop - info'
+      //   }
+      // },
+      // {
+      //   path: 'shops/new',
+      //   component: ShopCreateComponent,
+      //   data: {
+      //     markedSideMenuItemName: 'Shops',
+      //     pageTitle: 'Shop - new'
+      //   }
+      // },
+      // {
+      //   path: 'shops/:id/edit',
+      //   component: ShopEditComponent,
+      //   data: {
+      //     markedSideMenuItemName: 'Shops',
+      //     pageTitle: 'Shop - edit'
+      //   }
+      // },
+      // {
+      //   path: 'shopping-lists',
+      //   component: ShoppingListsListComponent,
+      //   data: {
+      //     markedSideMenuItemName: 'Shopping lists',
+      //     pageTitle: 'List of shopping lists'
+      //   }
+      // },
       {
         path: 'meals',
         component: MealsListComponent,

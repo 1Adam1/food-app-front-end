@@ -30,16 +30,16 @@ export class SideMenuComponent implements OnInit {
       iconName: 'restaurant_menu',
       url: 'meals',
     },
-    {
-      name: 'Shopping lists',
-      iconName: 'list',
-      url: 'shopping-lists',
-    },
-    {
-      name: 'Shops',
-      iconName: 'shopping_cart',
-      url: 'shops',
-    }
+    // {
+    //   name: 'Shopping lists',
+    //   iconName: 'list',
+    //   url: 'shopping-lists',
+    // },
+    // {
+    //   name: 'Shops',
+    //   iconName: 'shopping_cart',
+    //   url: 'shops',
+    // }
   ];
 
   constructor(private router: Router, private route: ActivatedRoute) { }
