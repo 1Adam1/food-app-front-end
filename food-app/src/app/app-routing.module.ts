@@ -81,19 +81,19 @@ const routes: Routes = [
         }
       },
       {
-        path: 'products/:id',
-        component: ProductInfoComponent,
-        data: {
-          markedSideMenuItemName: 'Products',
-          pageTitle: 'Product - info'
-        }
-      },
-      {
         path: 'products/new',
         component: ProductCreateComponent,
         data: {
           markedSideMenuItemName: 'Products',
           pageTitle: 'Product - new'
+        }
+      },
+      {
+        path: 'products/:id',
+        component: ProductInfoComponent,
+        data: {
+          markedSideMenuItemName: 'Products',
+          pageTitle: 'Product - info'
         }
       },
       {
