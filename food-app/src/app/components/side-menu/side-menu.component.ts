@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 class MenuItem {
   name: string;
@@ -13,7 +13,13 @@ class MenuItem {
   styleUrls: ['./side-menu.component.scss']
 })
 export class SideMenuComponent implements OnInit {
+  markedItemName: string = 'Home';
   items: MenuItem[] = [
+    {
+      name: 'Home',
+      iconName: 'home',
+      url: 'home',
+    },
     {
       name: 'Persons',
       iconName: 'people',
@@ -30,7 +36,7 @@ export class SideMenuComponent implements OnInit {
       url: 'meals',
     },
     {
-      name: 'Shopping Lists',
+      name: 'Shopping lists',
       iconName: 'list',
       url: 'shopping-lists',
     },
@@ -44,10 +50,14 @@ export class SideMenuComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.markedItemName = this.route.snapshot.firstChild.data['markedSideMenuItemName'];
+      }
+    });
   }
 
   onItemClick(itemUrl: string) {
-    console.log(itemUrl)
     this.router.navigate([itemUrl], {relativeTo: this.route});
   }
 

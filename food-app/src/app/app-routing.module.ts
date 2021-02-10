@@ -37,43 +37,83 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        data: {
+          markedSideMenuItemName: 'Home',
+          pageTitle: 'Home page'
+        }
       },
       {
         path: 'me',
-        component: UserInfoComponent
+        component: UserInfoComponent,
+        data: {
+          markedSideMenuItemName: '',
+          pageTitle: 'My data'
+        }
       },
       {
         path: 'me/edit',
-        component: UserEditComponent
+        component: UserEditComponent,
+        data: {
+          markedSideMenuItemName: '',
+          pageTitle: 'My data - edit'
+        }
       },
       {
         path: 'home',
-        component: HomeComponent
+        component: HomeComponent,
+        data: {
+          markedSideMenuItemName: 'Home',
+          pageTitle: 'Home page'
+        }
       },
       {
         path: 'products',
-        component: ProductListComponent
+        component: ProductListComponent,
+        data: {
+          markedSideMenuItemName: 'Products',
+          pageTitle: 'List of products'
+        }
       },
       {
         path: 'persons',
-        component: PersonsListComponent
+        component: PersonsListComponent,
+        data: {
+          markedSideMenuItemName: 'Persons',
+          pageTitle: 'List of persons'
+        }
       },
       {
         path: 'shops',
-        component: ShopsListComponent
+        component: ShopsListComponent,
+        data: {
+          markedSideMenuItemName: 'Shops',
+          pageTitle: 'List of shops'
+        }
       },
       {
         path: 'shopping-lists',
-        component: ShoppingListsListComponent
+        component: ShoppingListsListComponent,
+        data: {
+          markedSideMenuItemName: 'Shopping lists',
+          pageTitle: 'List of shopping lists'
+        }
       },
       {
         path: 'meals',
-        component: MealsListComponent
+        component: MealsListComponent,
+        data: {
+          markedSideMenuItemName: 'Meals',
+          pageTitle: 'List of meals'
+        }
       },
       {
         path: '**',
-        redirectTo: 'home'
+        redirectTo: 'home',
+        data: {
+          markedSideMenuItemName: 'Home',
+          pageTitle: 'Home page'
+        }
       }
     ]
   },

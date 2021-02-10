@@ -24,6 +24,10 @@ $item-icon-size: 60px;
     }
   }
 
+  .marked-item {
+    background-color: $primary-color;
+  }
+
   .item:hover {
     background-color: $primary-color;
     cursor: pointer;
