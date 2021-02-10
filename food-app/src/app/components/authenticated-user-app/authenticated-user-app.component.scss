@@ -1,8 +1,5 @@
 @import '../../../styles/variables.scss';
 
-$sidebar-width: 120px;
-$header-bar-height: 50px;
-
 .authenticated-user-app {
   display: flex;
   flex-direction: column;
@@ -16,6 +13,7 @@ $header-bar-height: 50px;
     background-color: $dark-primary-color;
     color: $text-icons-color;
     padding: 5px;
+    box-shadow: $basic-box-shadow;
   }
 
   .app-main-part {
@@ -28,6 +26,7 @@ $header-bar-height: 50px;
       width: $sidebar-width;
       background-color: $dark-primary-color;
       color: $text-icons-color;
+      box-shadow: $basic-box-shadow;
     }
 
     .content {

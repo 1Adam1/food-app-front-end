@@ -40,7 +40,7 @@ const routes: Routes = [
         component: HomeComponent,
         data: {
           markedSideMenuItemName: 'Home',
-          pageTitle: 'Home page'
+          pageTitle: 'Home'
         }
       },
       {
@@ -112,7 +112,7 @@ const routes: Routes = [
         redirectTo: 'home',
         data: {
           markedSideMenuItemName: 'Home',
-          pageTitle: 'Home page'
+          pageTitle: 'Home'
         }
       }
     ]

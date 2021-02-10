@@ -1,21 +1,83 @@
 @import '../../../../styles/variables.scss';
+@import '../../authenticated-user-app/authenticated-user-app.component.scss';
 
 $menu-item-width: 70px;
 $item-icon-size: 40px;
+$menu-list-width: 250px;
 
 .menu {
-  height: 100%;
-  width: $menu-item-width;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+  position: relative;
 
-  .icon {
-    font-size: $item-icon-size;
-    color: $secondary-accent-color;
+  .menu-expand-button {
+    height: 100%;
+    width: $menu-item-width;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  
+    .icon {
+      font-size: $item-icon-size;
+      color: $secondary-accent-color;
+    }
   }
-}
+  
+  .menu-expand-button:hover {
+    cursor: pointer
+  }
 
-.menu:hover {
-  cursor: pointer
+  .menu-list {
+    position: fixed;
+    display: block;
+    z-index: 10;
+    top: $header-bar-height;
+    right: 10px;
+
+    width: $menu-list-width;
+    padding: 10px 15px;
+    background-color: $secondary-color;
+    color: $primary-text-color;
+    box-shadow: $basic-box-shadow;
+
+    .user-info {
+      padding-bottom: 30px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .list-icon {
+        font-size: 2.5rem;
+      }
+
+      .user-info-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        width: 75%;
+
+        .name {
+          font-size: 1.2rem;
+          text-overflow: ellipsis;
+
+        }
+
+        .login {
+          color: $secondary-text-color;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    .list-item {
+      text-align: left;
+      padding: 5px 0;
+      color: $accent-color;
+    }
+
+    .list-item:hover {
+      cursor: pointer;
+      color: $accent-hover-color;
+    }
+  }
 }
