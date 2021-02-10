@@ -21,6 +21,9 @@ import { ShopsListComponent } from './components/shop/shops-list/shops-list.comp
 import { ShoppingListsListComponent } from './components/shopping-list/shopping-lists-list/shopping-lists-list.component';
 import { SettingsMenuComponent } from './components/shared/settings-menu/settings-menu.component';
 import { DataInfoComponent } from './components/data-info/data-info.component';
+import { ShopInfoComponent } from './components/shop/shop-info/shop-info.component';
+import { ShopCreateComponent } from './components/shop/shop-create/shop-create.component';
+import { ShopEditComponent } from './components/shop/shop-edit/shop-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { DataInfoComponent } from './components/data-info/data-info.component';
     ShopsListComponent,
     ShoppingListsListComponent,
     SettingsMenuComponent,
-    DataInfoComponent
+    DataInfoComponent,
+    ShopInfoComponent,
+    ShopCreateComponent,
+    ShopEditComponent
   ],
   imports: [
     BrowserModule,
