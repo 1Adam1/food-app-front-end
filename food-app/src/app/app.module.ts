@@ -21,6 +21,7 @@ import { MealsListComponent } from './components/meal/meals-list/meals-list.comp
 import { ShopsListComponent } from './components/shop/shops-list/shops-list.component';
 import { ShoppingListsListComponent } from './components/shopping-list/shopping-lists-list/shopping-lists-list.component';
 import { SettingsMenuComponent } from './components/shared/settings-menu/settings-menu.component';
+import { DataInfoComponent } from './components/data-info/data-info.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SettingsMenuComponent } from './components/shared/settings-menu/setting
     MealsListComponent,
     ShopsListComponent,
     ShoppingListsListComponent,
-    SettingsMenuComponent
+    SettingsMenuComponent,
+    DataInfoComponent
   ],
   imports: [
     BrowserModule,

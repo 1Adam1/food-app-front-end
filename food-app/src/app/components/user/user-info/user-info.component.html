@@ -2,22 +2,7 @@
   <app-loading-content-component></app-loading-content-component>
 </div>
 <div *ngIf="pageLoaded">
-  <div>
-    <span>Login: </span>
-    <span>{{user.login}}</span>
-  </div>
-  <div>
-    <span>Name: </span>
-    <span>{{user.name}}</span>
-  </div>
-  <div>
-    <span>Surname: </span>
-    <span>{{user.surname}}</span>
-  </div>
-  <div>
-    <span>Description: </span>
-    <span>{{user.description}}</span>
-  </div>
+  <app-data-info [data]="data"></app-data-info>
   <div>
     <button (click)="deleteUser()">DELETE USER</button>
   </div>

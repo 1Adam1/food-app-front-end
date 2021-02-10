@@ -32,6 +32,7 @@
     .content {
       flex-grow: 1;
       padding: 30px;
+      padding-bottom: 0;
       overflow: none;
       display: flex;
       justify-content: center;
@@ -41,7 +42,7 @@
         box-shadow: $basic-box-shadow;
         height: 100%;
         overflow: auto;
-        padding: 15px;
+        padding: 30px;
         width: $page-standard-width;
       }
     }
@@ -67,6 +68,11 @@
     .app-main-part {
       .content {
         width: $page-for-small-devices-width;
+
+        .content-page {
+          padding-left: 5px;
+          padding-right: 5px; 
+        }
       }
     }
   }
@@ -81,6 +87,11 @@
         padding-left: 5px;
         padding-right: 5px;
         width: $page-for-small-devices-width;
+
+        .content-page {
+          padding-left: 0;
+          padding-right: 0; 
+        }
       }
     }
   }
