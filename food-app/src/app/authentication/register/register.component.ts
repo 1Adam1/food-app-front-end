@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.signup(data).subscribe(result => {
 
     }, error => {
-      alert('Cannot create user with this data');
+      alert('Can\'t create user with this data');
     });
   }
 

@@ -48,7 +48,9 @@ export class UserEditComponent implements OnInit {
     const data = this.converter.convertFormFieldsToObject<UserUpdateRequestData>(this.form, fields);
 
     this.userService.updateLogedUser(data).subscribe(result => {
-      this.router.navigate(['/me']);
+      this.router.navigate(['/app/me']);
+    }, error => {
+      alert('Can\'t update user with this data');
     });
   }
 }
