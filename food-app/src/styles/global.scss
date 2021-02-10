@@ -170,5 +170,36 @@ textarea {
         margin-bottom: 0;
       }
     }
+
+    .list {
+      width: $list-width;
+      
+      .list-item {
+        padding: 15px;
+        border: 2px solid $light-primary-color;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .item-name {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: $dark-primary-color;
+        }
+
+      }
+
+      .list-item:hover {
+        cursor: pointer;
+        background-color: $primary-color;
+        color: $text-icons-color;
+
+        .item-name {
+          color: $text-icons-color;
+        }
+      }
+    }
   }
 }

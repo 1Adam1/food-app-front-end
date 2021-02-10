@@ -1,0 +1,38 @@
+@import '../../../../styles/variables.scss';
+
+$units-width: 100px;
+$unit-width: 50px;
+
+.list-item {
+  .item-additional-info {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .value {
+      color: $secondary-accent-color;
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 0 5px;
+    }
+  
+    .units {
+      width: $units-width;
+      height: 100%;
+  
+      color: $secondary-text-color;
+      font-size: 0.9rem;
+      
+      .unit {
+        width: $unit-width;
+        margin: 0 5px;
+      }
+    }
+  }
+}
+
+.list-item:hover {
+  .unit, .separator {
+    color: $text-icons-color;
+  }
+}
