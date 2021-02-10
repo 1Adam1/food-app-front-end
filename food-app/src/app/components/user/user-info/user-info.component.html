@@ -4,9 +4,15 @@
 <div *ngIf="pageLoaded">
   <app-data-info [data]="data"></app-data-info>
   <div class="page-section">
+    <header class="section-header">Account edition</header>
+    <div class="section-content">
+      <button class="button" (click)="goToUserEdit()">Edit</button>
+    </div>
+  </div>
+  <div class="page-section">
     <header class="section-header">Logout from all devices</header>
     <div class="section-content">
-      <button class="button" (click)="deleteUser()">Logout</button>
+      <button class="button" (click)="logoutAll()">Logout</button>
     </div>
   </div>
   <div class="page-section">

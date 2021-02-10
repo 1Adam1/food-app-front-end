@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserData } from 'src/app/model/interfaces/user-data.interface';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,7 +15,12 @@ export class UserInfoComponent implements OnInit {
   user: UserData;
   data: DataInfoComponentInputFormat;
 
-  constructor(private authenticationService: AuthenticationService, private userService: UserService) { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private userService: UserService, 
+    private router: Router, 
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.userService.getLogedUser().subscribe(result => {
@@ -32,7 +38,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   private prepareDataInfoComponentInputFormat(header: string): DataInfoComponentInputFormat {
-    const result:DataInfoComponentInputFormat = {
+    const result: DataInfoComponentInputFormat = {
       header,
       values: [
         {
@@ -55,5 +61,13 @@ export class UserInfoComponent implements OnInit {
     };
 
     return result;
+  }
+
+  goToUserEdit() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  logoutAll() {
+    this.authenticationService.logoutAll().subscribe();
   }
 }
