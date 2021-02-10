@@ -1,0 +1,28 @@
+@import '../../../styles/global.scss';
+
+.data-info {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  .row {
+    width: 100%;
+    display: flex;
+    padding-bottom: 20px;
+
+    .key {
+      width: 20%;
+      text-align: right;
+      color: $primary-color;
+      padding-right: 30px;
+
+      font-size: 1.2rem;
+    }
+
+    .value {
+      color: $secondary-text-color;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,17 +1,17 @@
-<div *ngIf="data">
+<div class="page-section" *ngIf="data">
   <div class="header-container">
-    <header *ngIf="data.header">{{data.header}}</header>
+    <header class="section-header" *ngIf="data.header">{{data.header}}</header>
     <div *ngIf="link?.url">
-      <span class=" icon material-icons">
+      <span class="icon material-icons">
         arrow_back
       </span>
       <span *ngIf="link?.name">{{link.name}}</span>
     </div>
   </div>
-  <div class="data-info">
+  <div class="section-content data-info">
     <div class="row" *ngFor="let record of data.values">
       <span class="key">
-        {{record.key}}
+        {{record.key}}:
       </span>
       <span class="value">
         {{record.value}}

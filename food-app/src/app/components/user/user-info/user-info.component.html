@@ -3,7 +3,12 @@
 </div>
 <div *ngIf="pageLoaded">
   <app-data-info [data]="data"></app-data-info>
-  <div>
-    <button (click)="deleteUser()">DELETE USER</button>
+  <div class="page-section">
+    <header class="section-header">Logout from all devices</header>
+    <button (click)="deleteUser()">Logout</button>
+  </div>
+  <div class="page-section">
+    <header class="section-header">Account deletion</header>
+    <button (click)="deleteUser()">Delete</button>
   </div>
 </div>
