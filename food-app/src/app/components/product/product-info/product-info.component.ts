@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/model/interfaces/product.interface';
 import { ProductService } from 'src/app/services/product.service';
-import { DataInfoComponentInputFormat } from '../../data-info/data-info.component';
+import { DataInfoComponentInputFormat } from '../../shared/data-info/data-info.component';
 
 @Component({
   selector: 'app-product-info',

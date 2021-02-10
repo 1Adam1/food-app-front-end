@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserData } from 'src/app/model/interfaces/user-data.interface';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
-import { DataInfoComponentInputFormat } from '../../data-info/data-info.component';
+import { DataInfoComponentInputFormat } from '../../shared/data-info/data-info.component';
 
 @Component({
   selector: 'app-user-info',
