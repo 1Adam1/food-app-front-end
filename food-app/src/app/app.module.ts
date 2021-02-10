@@ -27,6 +27,9 @@ import { ShopEditComponent } from './components/shop/shop-edit/shop-edit.compone
 import { ProductInfoComponent } from './components/product/product-info/product-info.component';
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 import { ProductCreateComponent } from './components/product/product-create/product-create.component';
+import { MealCreateComponent } from './components/meal/meal-create/meal-create.component';
+import { MealEditComponent } from './components/meal/meal-edit/meal-edit.component';
+import { MealInfoComponent } from './components/meal/meal-info/meal-info.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { ProductCreateComponent } from './components/product/product-create/prod
     ShopEditComponent,
     ProductInfoComponent,
     ProductEditComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    MealCreateComponent,
+    MealEditComponent,
+    MealInfoComponent
   ],
   imports: [
     BrowserModule,

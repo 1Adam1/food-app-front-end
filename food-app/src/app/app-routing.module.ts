@@ -18,6 +18,9 @@ import { ShopEditComponent } from './components/shop/shop-edit/shop-edit.compone
 import { ProductInfoComponent } from './components/product/product-info/product-info.component';
 import { ProductCreateComponent } from './components/product/product-create/product-create.component';
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
+import { MealEditComponent } from './components/meal/meal-edit/meal-edit.component';
+import { MealInfoComponent } from './components/meal/meal-info/meal-info.component';
+import { MealCreateComponent } from './components/meal/meal-create/meal-create.component';
 
 const routes: Routes = [
   {
@@ -104,6 +107,38 @@ const routes: Routes = [
           pageTitle: 'Product - edit'
         }
       },
+      {
+        path: 'meals',
+        component: MealsListComponent,
+        data: {
+          markedSideMenuItemName: 'Meals',
+          pageTitle: 'List of meals'
+        }
+      },
+      {
+        path: 'meals/new',
+        component: MealCreateComponent,
+        data: {
+          markedSideMenuItemName: 'Meals',
+          pageTitle: 'Meal - new'
+        }
+      },
+      {
+        path: 'meals/:id',
+        component: MealInfoComponent,
+        data: {
+          markedSideMenuItemName: 'Meals',
+          pageTitle: 'Meal - info'
+        }
+      },
+      {
+        path: 'meals/:id/edit',
+        component: MealEditComponent,
+        data: {
+          markedSideMenuItemName: 'Meals',
+          pageTitle: 'Meal - edit'
+        }
+      },
       // {
       //   path: 'shops',
       //   component: ShopsListComponent,
@@ -144,14 +179,6 @@ const routes: Routes = [
       //     pageTitle: 'List of shopping lists'
       //   }
       // },
-      {
-        path: 'meals',
-        component: MealsListComponent,
-        data: {
-          markedSideMenuItemName: 'Meals',
-          pageTitle: 'List of meals'
-        }
-      },
       {
         path: '**',
         redirectTo: 'home',

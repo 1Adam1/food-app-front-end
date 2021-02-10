@@ -1,1 +1,29 @@
-<p>meals-list works!</p>
+<div *ngIf="!pageLoaded">
+  <app-loading-content-component></app-loading-content-component>
+</div>
+<div *ngIf="pageLoaded">
+  <div class="page-section">
+    <header class="section-header">Create new meal</header>
+    <div class="section-content">
+      <button class="button" (click)="goToMealCreationPage()">Create</button>
+    </div>
+  </div>
+  <div class="page-section">
+    <header class="section-header">Current meals</header>
+    <div class="section-content">
+      <div class="list">
+        <!-- <div *ngFor="let product of products" class="list-item" (click)="goToProductInfoPage(product)">
+          <span class="item-name">{{product.name}}</span>
+          <span class="item-additional-info">
+            <span class="value">{{product.kilocaloriesPerUnit}}</span> 
+            <span class="units">
+              <span class="unit">kcal</span>
+              <span class="separator">/</span>
+              <span class="unit">{{product.defaultUnit}}</span>
+            </span>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
