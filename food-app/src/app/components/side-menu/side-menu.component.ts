@@ -21,11 +21,6 @@ export class SideMenuComponent implements OnInit {
       url: 'home',
     },
     {
-      name: 'Persons',
-      iconName: 'people',
-      url: 'persons',
-    },
-    {
       name: 'Products',
       iconName: 'bakery_dining',
       url: 'products',

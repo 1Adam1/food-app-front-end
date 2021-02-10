@@ -16,7 +16,6 @@ import { HeaderBarComponent } from './components/header-bar/header-bar.component
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
-import { PersonsListComponent } from './components/person/persons-list/persons-list.component';
 import { MealsListComponent } from './components/meal/meals-list/meals-list.component';
 import { ShopsListComponent } from './components/shop/shops-list/shops-list.component';
 import { ShoppingListsListComponent } from './components/shopping-list/shopping-lists-list/shopping-lists-list.component';
@@ -36,7 +35,6 @@ import { DataInfoComponent } from './components/data-info/data-info.component';
     SideMenuComponent,
     HomeComponent,
     ProductListComponent,
-    PersonsListComponent,
     MealsListComponent,
     ShopsListComponent,
     ShoppingListsListComponent,

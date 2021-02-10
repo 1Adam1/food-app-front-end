@@ -7,7 +7,6 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { AuthenticatedUserAppComponent } from './components/authenticated-user-app/authenticated-user-app.component';
 import { HomeComponent } from './components/home/home.component';
 import { MealsListComponent } from './components/meal/meals-list/meals-list.component';
-import { PersonsListComponent } from './components/person/persons-list/persons-list.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ShoppingListsListComponent } from './components/shopping-list/shopping-lists-list/shopping-lists-list.component';
 import { ShopsListComponent } from './components/shop/shops-list/shops-list.component';
@@ -73,14 +72,6 @@ const routes: Routes = [
         data: {
           markedSideMenuItemName: 'Products',
           pageTitle: 'List of products'
-        }
-      },
-      {
-        path: 'persons',
-        component: PersonsListComponent,
-        data: {
-          markedSideMenuItemName: 'Persons',
-          pageTitle: 'List of persons'
         }
       },
       {
