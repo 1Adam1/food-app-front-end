@@ -1,7 +1,14 @@
-<div>
-  <form #authenticationForm="ngForm" (ngSubmit)="onSubmit(authenticationForm)">
+<div class="main-centered-container">
+  <form class="form" #authenticationForm="ngForm" (ngSubmit)="onSubmit(authenticationForm)">
+    <header class="form-header">
+      Log to app
+    </header>
     <div class="form-group">
-      <label for="login">Login</label>
+      Don't have account? 
+      <span class="link" (click)="goToRegistrationPage()">Create new</span>
+    </div>
+    <div class="form-group">
+      <label class="form-label required-label" for="login">Login</label>
       <input 
         type="text" 
         id="login"
@@ -9,10 +16,12 @@
         ngModel
         name="login"
         required
+        #login="ngModel"
       >
+      <span class="form-control-message" *ngIf="!login.valid && login.touched">Field is required</span>
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
+      <label class="form-label required-label" for="password">Password</label>
       <input 
         type="password" 
         id="password"
@@ -21,10 +30,13 @@
         name="password"
         minlength="6"
         required
+        #password="ngModel"
       >
+      <span class="form-control-message" *ngIf="!password.valid && password.touched">Field is required</span>
     </div>
-    <div>
-      <button 
+    <div class="form-group">
+      <button
+        class="button form-submit" 
         type="submit" 
         [disabled]="!authenticationForm.valid"
       >

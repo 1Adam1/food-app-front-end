@@ -1,0 +1,32 @@
+@import '../../../../styles/global.scss';
+
+.data-info {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  .row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+
+    .key {
+      width: 30%;
+      text-align: right;
+      color: $primary-color;
+      padding-right: 30px;
+
+      font-size: 1.2rem;
+    }
+
+    .value {
+      width: 65%;
+      color: $secondary-text-color;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      line-height: 150%;
+    }
+  }
+}

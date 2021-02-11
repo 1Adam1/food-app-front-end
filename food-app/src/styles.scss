@@ -1,0 +1,43 @@
+@import './styles/global.scss';
+@import '~material-icons/iconfont/material-icons.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+html {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+}
+
+html, body {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+}
+
+app-root {
+  height: 100%;
+  width: 100%;
+
+  background-color: $dark-primary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+router-outlet {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+app-authenticated-user-app {
+  width: 100%;
+  min-width: 400px;
+  height: 100%;
+  display: flex;
+}

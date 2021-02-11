@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, mapTo, tap } from 'rxjs/operators';
+import { catchError, mapTo, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { UserCreateRequestData } from '../model/api/requests/user.request-data';
 import { UserResponseData } from '../model/api/responses/user.response-data';
@@ -100,7 +100,7 @@ export class AuthenticationService {
   private handleAuthentication(resultData: UserResponseData) {
     this.user = resultData.user;
     this.storeAuthenticationToken(resultData.token);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/app']);
   }
 
   private performLogout() {
@@ -119,6 +119,9 @@ export class AuthenticationService {
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
+    if (errorResponse instanceof HttpErrorResponse && errorResponse.status === 401) {
+      this.router.navigate(['/login']);
+    }
     return throwError('Error');
   }
 

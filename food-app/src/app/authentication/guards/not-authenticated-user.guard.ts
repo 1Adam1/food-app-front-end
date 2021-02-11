@@ -13,7 +13,7 @@ export class NotAuthenticatedUserGuard implements CanActivate {
     const userIsLoged = this.authenticationService.isUserLoged();
 
     if (userIsLoged) {
-      return this.router.createUrlTree(['/home']);
+      return this.router.createUrlTree(['/app']);
     }
 
     return true;

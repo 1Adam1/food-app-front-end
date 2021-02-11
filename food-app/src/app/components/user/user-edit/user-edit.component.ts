@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.sass']
+  styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent implements OnInit {
   user: UserData;
@@ -48,7 +48,9 @@ export class UserEditComponent implements OnInit {
     const data = this.converter.convertFormFieldsToObject<UserUpdateRequestData>(this.form, fields);
 
     this.userService.updateLogedUser(data).subscribe(result => {
-      this.router.navigate(['/me']);
+      this.router.navigate(['/app/me']);
+    }, error => {
+      alert('Can\'t update user with this data');
     });
   }
 }

@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.sass']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,10 +21,16 @@ export class LoginComponent implements OnInit {
     }
 
     const {login, password} = form.value;
-
-    form.reset();
     
-    this.authenticationService.login(login, password).subscribe();
+    this.authenticationService.login(login, password).subscribe(result => {
+      form.reset();
+    }, error => {
+      window.alert('Wrong login or password');
+    }
+    );
   }
 
+  goToRegistrationPage() {
+    this.router.navigate(['/register']);
+  }
 }

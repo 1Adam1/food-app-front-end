@@ -1,0 +1,205 @@
+@import './variables.scss';
+
+$main-centered-container-min-width: 400px;
+$main-centered-container-max-width: 600px;
+
+textarea {
+  height: 150px;
+}
+
+.button {
+  background-color: $primary-color;
+  color: $text-icons-color;
+  border: 2px solid $dark-primary-color;
+  border-radius: 4px;
+
+  padding: 20px;
+  font-size: 1.2rem;
+
+  text-transform: uppercase;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: $dark-primary-color;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+.danger-button {
+  background-color: $error-color;
+  border: 2px solid $accent-color;
+}
+
+.danger-button:hover {
+  background-color: $error-color-hover;
+}
+
+.link {
+  color: $accent-color;
+  font-weight: 700;  
+}
+
+.link:hover {
+  cursor: pointer;
+  color:  $accent-hover-color;
+  text-decoration: underline;
+}
+
+.required-label:after {
+  color: $error-color;
+  content: '*';
+}
+
+.main-centered-container {
+  background-color: $secondary-color;
+  color: $primary-text-color;
+  box-shadow: $basic-box-shadow;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: $main-centered-container-min-width;
+}
+
+.form {
+  padding: 40px;
+
+  .form-header {
+    text-align: left;
+    font-size: 1.8rem;
+
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  .form-group {
+    padding: 5px 0;
+    margin-bottom: 10px;
+    position: relative;
+
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+    }
+
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: 7px;
+
+      margin-bottom: 5px;
+      border: 2px solid $light-primary-color;
+      border-radius: 4px;
+
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      outline: 0;
+      border-color: $primary-color;
+    }
+
+    .form-control.ng-touched.ng-valid {
+      border-color: $success-color;
+    }
+
+    .form-control.ng-touched.ng-invalid {
+      border-color: $error-color;
+    }
+
+    .form-control-message {
+      display: block;
+
+      color: $error-color;
+      font-size: 0.9rem;
+    }
+
+    .form-submit {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+}
+
+.page-section {
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $divider-color;
+
+  .section-header {
+    font-size: 1.5rem;
+    color: $dark-primary-color;
+    font-weight: 600;
+  }
+
+  .section-content {
+    font-size: 1.1rem;
+    margin: 15px 0 15px 30px;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      margin: 30px;
+      margin-bottom: 30px;
+      width: $section-button-width;
+    }
+
+    .form {
+      width: $form-width;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .form-group {
+        width: 100%;
+      }
+
+      .button.form-submit {
+        margin-bottom: 0;
+      }
+    }
+
+    .list {
+      width: $list-width;
+      
+      .list-item {
+        padding: 15px;
+        border: 2px solid $light-primary-color;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .item-name {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: $dark-primary-color;
+        }
+
+      }
+
+      .list-item:hover {
+        cursor: pointer;
+        background-color: $primary-color;
+        color: $text-icons-color;
+
+        .item-name {
+          color: $text-icons-color;
+        }
+      }
+    }
+  }
+}

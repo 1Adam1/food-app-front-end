@@ -24,7 +24,7 @@ export class MealService {
   }
 
   getAllMeals(): Observable<Meal[]> {
-    const url = `${environment.url}/meals`;
+    const url = `${environment.url}/users/me/meals`;
     return this.commonMethodsForHttpService.getMultiData<MealResponseData, Meal>(url);
   }
 

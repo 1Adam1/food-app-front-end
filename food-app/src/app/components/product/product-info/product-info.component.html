@@ -1,0 +1,12 @@
+<div *ngIf="!pageLoaded">
+  <app-loading-content-component></app-loading-content-component>
+</div>
+<div *ngIf="pageLoaded">
+  <app-data-info [data]="data"></app-data-info>
+  <div class="page-section">
+    <header class="section-header">Product edition</header>
+    <div class="section-content">
+      <button class="button" (click)="goToProductEditionPage()">Edit</button>
+    </div>
+  </div>
+</div>

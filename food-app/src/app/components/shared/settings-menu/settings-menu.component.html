@@ -1,0 +1,25 @@
+<div class="menu">
+  <div class="menu-expand-button" (click)="onMenuExpandButtonClick()">
+    <span class="icon material-icons">
+      person_outline
+    </span>
+    <span class="icon material-icons">
+      expand_more
+    </span> 
+  </div>
+  <div class="menu-list" *ngIf="menuExpanded">
+    <div class="user-info">
+      <span class="list-icon material-icons">
+        face
+      </span>
+      <span class="user-info-data">
+        <span class="name">{{user?.name}} {{user?.surname}}</span>
+        <span class="login">{{user?.login}}</span>
+      </span>
+    </div>
+    <ul>
+      <li class="list-item" (click)="onShowUserInfoClick()">Show my user info</li>
+      <li class="list-item" (click)="onLogoutClick()">Logout</li>
+    </ul>
+  </div>
+</div>

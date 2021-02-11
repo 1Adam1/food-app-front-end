@@ -1,0 +1,10 @@
+<div class="menu">
+  <div class="item" [ngClass]="{'marked-item': item.name === markedItemName}" *ngFor="let item of items" (click)="onItemClick(item.url)">
+    <span class="icon material-icons">
+      {{item.iconName}}
+    </span>
+    <span class="item-name">
+      {{item.name}}
+    </span>
+  </div>
+</div>

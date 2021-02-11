@@ -4,7 +4,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 @Component({
   selector: 'app-authenticated-user-app',
   templateUrl: './authenticated-user-app.component.html',
-  styleUrls: ['./authenticated-user-app.component.sass']
+  styleUrls: ['./authenticated-user-app.component.scss']
 })
 export class AuthenticatedUserAppComponent implements OnInit {
 

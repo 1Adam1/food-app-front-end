@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, mapTo } from 'rxjs/operators';
 import { ObjectConverterService } from './object-converter.service';
@@ -9,7 +10,7 @@ import { ObjectConverterService } from './object-converter.service';
 })
 export class CommonMethodsForHttpService {
 
-  constructor(private http: HttpClient, private converter: ObjectConverterService) { }
+  constructor(private http: HttpClient, private converter: ObjectConverterService, private router: Router) { }
 
   createData(creationData: any, url: string): Observable<boolean> {
     return this.http
@@ -69,6 +70,9 @@ export class CommonMethodsForHttpService {
   }
 
   private handleError(errorResponse: HttpErrorResponse) {
+    if (errorResponse instanceof HttpErrorResponse && errorResponse.status === 401) {
+      this.router.navigate(['/app']);
+    }
     return throwError('Error');
   }
 }

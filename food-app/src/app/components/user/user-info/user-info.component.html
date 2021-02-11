@@ -2,23 +2,23 @@
   <app-loading-content-component></app-loading-content-component>
 </div>
 <div *ngIf="pageLoaded">
-  <div>
-    <span>Login: </span>
-    <span>{{user.login}}</span>
+  <app-data-info [data]="data"></app-data-info>
+  <div class="page-section">
+    <header class="section-header">Account edition</header>
+    <div class="section-content">
+      <button class="button" (click)="goToUserEdit()">Edit</button>
+    </div>
   </div>
-  <div>
-    <span>Name: </span>
-    <span>{{user.name}}</span>
+  <div class="page-section">
+    <header class="section-header">Logout from all devices</header>
+    <div class="section-content">
+      <button class="button" (click)="logoutAll()">Logout</button>
+    </div>
   </div>
-  <div>
-    <span>Surname: </span>
-    <span>{{user.surname}}</span>
-  </div>
-  <div>
-    <span>Description: </span>
-    <span>{{user.description}}</span>
-  </div>
-  <div>
-    <button (click)="deleteUser()">DELETE USER</button>
+  <div class="page-section">
+    <header class="section-header">Account deletion</header>
+    <div class="section-content">
+      <button class="button danger-button" (click)="deleteUser()">Delete</button>
+    </div>
   </div>
 </div>

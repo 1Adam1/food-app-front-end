@@ -2,23 +2,37 @@
   <app-loading-content-component></app-loading-content-component>
 </div>
 <div *ngIf="pageLoaded">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="login">Login</label>
-      <input type="text" id="login" formControlName="login">
+  <div class="page-section">
+    <header class="section-header">Update my data</header>
+    <div class="section-content">
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label class="form-label required-label" for="login">Login</label>
+          <input class="form-control" type="text" id="login" formControlName="login">
+          <span *ngIf="form.get('login').touched">
+            <span class="form-control-message" *ngIf="form.get('login').errors?.required">Field is required</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label class="form-label required-label" for="name">Name</label>
+          <input class="form-control" type="text" id="name" formControlName="name">
+          <span *ngIf="form.get('name').touched">
+            <span class="form-control-message" *ngIf="form.get('name').errors?.required">Field is required</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label class="form-label required-label" for="surname">Surname</label>
+          <input class="form-control" type="text" id="surname" formControlName="surname">
+          <span *ngIf="form.get('surname').touched">
+            <span class="form-control-message" *ngIf="form.get('surname').errors?.required">Field is required</span>
+          </span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="description">Description</label>
+          <textarea class="form-control" id="description" formControlName="description"></textarea>
+        </div>
+        <button class="button form-submit" type="submit" [disabled]="!form.valid">Update</button>
+      </form>
     </div>
-    <div>
-      <label for="name">Name</label>
-      <input type="text" id="name" formControlName="name">
-    </div>
-    <div>
-      <label for="surname">Surname</label>
-      <input type="text" id="surname" formControlName="surname">
-    </div>
-    <div>
-      <label for="description">Description</label>
-      <textarea id="description" formControlName="description"></textarea>
-    </div>
-    <button type="submit" [disabled]="!form.valid">Submit</button>
-  </form>
+  </div>
 </div>

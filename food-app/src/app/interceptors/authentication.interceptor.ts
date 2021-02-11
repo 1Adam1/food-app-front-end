@@ -28,16 +28,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(request).pipe(catchError(error => this.handleError(error)));
-  }
-
-  private handleError(error) {
-    if (error instanceof HttpErrorResponse && error.status === 401) {
-      this.router.navigate(['/login']);
-    } else {
-      throwError(error);
-    }
-
-    return of<any>();
+    return next.handle(request);
   }
 }
