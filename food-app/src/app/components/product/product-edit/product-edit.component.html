@@ -1,6 +1,6 @@
-<div *ngIf="!pageLoaded">
-  <app-loading-content-component></app-loading-content-component>
-</div>
+<app-loading-content *ngIf="!pageLoaded">
+</app-loading-content>
+
 <div *ngIf="pageLoaded">
   <div class="page-section">
     <header class="section-header">Update product</header>
